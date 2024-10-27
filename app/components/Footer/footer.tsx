@@ -9,7 +9,9 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between mb-4">
           <div className="text-center md:text-left">
             <h3 className="text-xl font-bold">Nuestra Firma</h3>
-            <p className="text-gray-400 mt-2">Proveemos soluciones legales confiables y personalizadas para nuestros clientes.</p>
+            <p className="text-gray-400 mt-2">Proveemos soluciones legales confiables y personalizadas para nuestros clientes.<br></br>
+                Toda la informacion que necesitas para resolver tus dudas a un solo click!
+            </p>
           </div>
 
           <nav className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
@@ -38,9 +40,9 @@ const Footer: React.FC = () => {
 
         {/* Derechos de autor */}
         <div className="text-center text-gray-500">
-          <p>© {new Date().getFullYear()} Nombre de la Firma. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Lexy. Todos los derechos reservados.</p>
         </div>
-      </div>
+      </div>    
     </footer>
   );
 };

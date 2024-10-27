@@ -2,20 +2,33 @@
 
 import Contact from './components/Contact';
 import HomePage from './components/Hero';
-// import HomePage from './components/Hero';
 import Servicios from './components/Servicios';
-// import SobreNosotros from './components/SobreNosotros';
 import TeamSection from './components/team/teamSection';
 import Footer from './components/Footer/footer';
+import Header from './components/Header/Header';
+
 
 
 const Page = () => {
   return (
     <div>
-      <HomePage/>
-      <Servicios/>
-      <TeamSection/>
-      <Contact /> 
+      <Header/>
+
+      <section>
+        <HomePage/>
+      </section>
+
+      <section id='servicios'>
+        <Servicios/>
+      </section>
+
+      <section id='Equipo'>
+        <TeamSection/>
+      </section>
+
+      <section id='Contacto'>
+        <Contact /> 
+      </section>
       <Footer/>
     </div>
   )
