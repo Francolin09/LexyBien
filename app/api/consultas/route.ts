@@ -1,5 +1,5 @@
-import connectMongo from '../../../lib/mongoose'; // Importar la conexión
-import Consulta from '../../../models/consulta'; // Importar el modelo de usuario
+import connectMongo from '../../../lib/mongoose'; 
+import Consulta from '../../../models/consulta'; 
 import { NextResponse } from 'next/server';
 
 export async function GET() {

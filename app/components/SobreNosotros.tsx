@@ -1,4 +1,3 @@
-
 const SobreNosotros = () => {
     return (
       <section>
