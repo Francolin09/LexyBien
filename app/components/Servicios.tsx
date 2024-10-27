@@ -3,9 +3,9 @@ import Image from 'next/image';
 
 const Servicios = () => {
   return (
-    <div className="relative bg-gray-100 min-h-screen py-12">
+    <div className="relative h-screen bg-gray-110">
       {/* Imagen de fondo */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         <Image 
           src={"/images/ImgServicios.jpg"}  
           alt="Fondo de justicia"

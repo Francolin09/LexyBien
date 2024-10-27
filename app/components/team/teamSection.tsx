@@ -26,7 +26,7 @@ const TeamSection: React.FC = () => {
   return (
     <section
       id="team" // Agregar un ID para la navegación anclada
-      className="py-12"
+      className="relative h-screen bg-gray-110"
       style={{
         backgroundImage: 'url(/images/fondoTeam.jpg)', // Ruta de tu imagen de fondo
         backgroundSize: 'fill', // Ajustar el tamaño de la imagen
