@@ -16,7 +16,7 @@ const teamMembers = [
   },
   {
     name: 'Nombre Generico',
-    role: 'Derecho civil',
+    role: 'Especialista en Derecho civil',
     description: 'Aporta un enfoque sereno y experiencia para una defensa legal sólida y eficaz.',
     imageUrl: '/images/miembro3.jpg',
   },
@@ -25,18 +25,18 @@ const teamMembers = [
 const TeamSection: React.FC = () => {
   return (
     <section
-      id="team" // Agregar un ID para la navegación anclada
-      className="relative h-screen bg-gray-110"
+      id="team"
+      className="relative min-h-screen flex flex-col items-center justify-center bg-gray-110"
       style={{
-        backgroundImage: 'url(/images/fondoTeam.jpg)', // Ruta de tu imagen de fondo
-        backgroundSize: 'fill', // Ajustar el tamaño de la imagen
-        backgroundPosition: 'center', // Centrar la imagen
-        backgroundRepeat: 'no-repeat', // No repetir la imagen
+        backgroundImage: 'url(/images/fondoTeam.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
-      <h2 className="text-3xl font-bold text-center mb-8 text-white">Nuestro equipo</h2> {/* Cambia el color del texto si es necesario */}
+      <h2 className="text-3xl font-bold text-center mb-8 text-white">Algunos de nuestros especialistas</h2>
       
-      <div className="flex flex-col items-center space-y-8 md:flex-row md:space-x-8 md:space-y-0 justify-center">
+      <div className="flex flex-col items-center space-y-8 md:flex-row md:space-x-8 md:space-y-0 justify-center max-w-6xl">
         {teamMembers.map((member) => (
           <TeamCard
             key={member.name}

@@ -39,7 +39,7 @@ const HomePage = () => {
           <li><a href="/" className="hover:text-gray-300">Inicio</a></li>
           <li><a href="#" className="hover:text-gray-300">Servicios</a></li>
           <li><a href="#" className="hover:text-gray-300">Equipo</a></li>
-          <li><a href="#" className="hover:text-gray-300">Algo</a></li>
+          <li><a href="#" className="hover:text-gray-300">Contactanos</a></li>
         </ul>
         <div className="w-8 h-8 bg-pink-500 rounded-full"></div>
       </nav>
