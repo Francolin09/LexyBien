@@ -1,22 +1,20 @@
 'use client'
+
 import Contact from './components/Contact';
-import HomePage from './components/home';
-// import HomePage from './components/home';
+import HomePage from './components/Hero';
+// import HomePage from './components/Hero';
 import Servicios from './components/Servicios';
-import SobreNosotros from './components/SobreNosotros';
+// import SobreNosotros from './components/SobreNosotros';
+import TeamSection from './components/team/teamSection';
 
 
 const Page = () => {
   return (
     <div>
-      <h1>Hola que tal</h1>
-      
-      {/* Sección del formulario de contacto */}
-      <HomePage />
+      <HomePage/>
       <Servicios/>
-      <Contact />
-      
-
+      <TeamSection/>
+      <Contact /> 
     </div>
   )
 }
