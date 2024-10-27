@@ -35,11 +35,11 @@ const HomePage = () => {
 
       {/* Barra de navegación */}
       <nav className="fixed top-0 left-0 right-0 z-20 bg-transparent p-6 flex justify-between items-center text-white">
-        <ul className="flex space-x-8">
+        <ul className="flex space-x-8 ">
           <li><a href="/" className="hover:text-gray-300">Inicio</a></li>
-          <li><a href="#" className="hover:text-gray-300">Servicios</a></li>
-          <li><a href="#" className="hover:text-gray-300">Equipo</a></li>
-          <li><a href="#" className="hover:text-gray-300">Contactanos</a></li>
+          <li><a href="#Servicios" className="hover:text-gray-300 ">Servicios</a></li>
+          <li><a href="#TeamSection" className="hover:text-gray-300">Equipo</a></li>
+          <li><a href="#Contact" className="hover:text-gray-300">Contactanos</a></li>
         </ul>
         <div className="w-8 h-8 bg-pink-500 rounded-full"></div>
       </nav>
