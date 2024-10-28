@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Header: React.FC = () => {
@@ -19,7 +20,10 @@ const Header: React.FC = () => {
           </a>
           <a href="#Contacto" className="hover:text-blue-400">
             Contacto
-          </a>
+          </a>  
+          <Link href="/login">
+            Iniciar Sesion
+          </Link>
         </nav>
 
        </div>
