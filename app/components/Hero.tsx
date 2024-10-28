@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HomePage = () => {
   return (
@@ -28,9 +29,12 @@ const HomePage = () => {
         </p>
 
         {/* Botón del Chatbot */}
+        <Link href="/chatbot">
         <button className="bg-black text-white py-3 px-6 rounded-full shadow-lg hover:bg-gray-800 transition">
           ➤ ChatBot
         </button>
+        </Link>
+
       </div>
 
       {/* Barra de navegación */}
