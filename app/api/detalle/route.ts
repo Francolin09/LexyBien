@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import connectMongo from '@/lib/mongoose';
 import Consulta from '@/models/consulta';
-import Usuario from '@/models/usuario';
 
 
 export async function GET() {
