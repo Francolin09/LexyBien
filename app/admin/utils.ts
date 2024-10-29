@@ -3,7 +3,6 @@ export const getUsers = async () => {
     method: 'GET'
   })
   if (response.statusText !== 'OK'){
-    console.log("hola")
     console.log(response.statusText)
   }
   const json = await response.json();
@@ -18,7 +17,6 @@ if (response.statusText !== 'OK'){
   console.log('error de solicitud')
 }
 const json = await response.json();
-console.log(json)
 return json;
 }
 
@@ -30,6 +28,5 @@ export const getDetalles = async () => {
     console.log('error de solicitud')
   }
   const json = await response.json();
-  console.log(json)
   return json;
   }
