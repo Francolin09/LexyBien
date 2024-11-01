@@ -3,6 +3,7 @@
 
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
+import Header from '../components/Header/Header';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -31,6 +32,7 @@ const Login = () => {
 
   return (
     <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
+      <Header/>
       <h1 className="text-white text-3xl mb-6">Iniciar sesión</h1>
       <div className="w-full max-w-md bg-gray-700 text-white rounded-lg shadow-lg overflow-hidden p-6">
         {/* Mostrar el mensaje de error si existe */}

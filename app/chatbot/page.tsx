@@ -1,16 +1,19 @@
-
-
 'use client';
 import { useSession, signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/footer';
 
+
+
+  
 const ChatbotPage = () => {
   const { data: session, status } = useSession();
   const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
   const [input, setInput] = useState('');
- 
-
+   
+  
   // Manejar el estado de carga de la sesión
   if (status === 'loading') {
     return <p>Cargando...</p>; 
@@ -20,6 +23,7 @@ const ChatbotPage = () => {
   if (!session || !session.user) {
     return (
       <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
+        <Header/>
         <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión.</p>
         <button
           className="bg-blue-500 text-white px-4 py-2 rounded"
@@ -57,7 +61,8 @@ const ChatbotPage = () => {
   // Si el usuario está autenticado, renderiza el chatbot
   return (
     <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
-      <h1 className='text-4xl mb-5'>Lexy, tu asistente legal virtual</h1>
+      <Header/>
+      <h1 className='text-4xl mb-5 text-white'>Lexy, tu asistente legal virtual</h1>
       <div className="w-full max-w-lg bg-gray-700 text-white rounded-lg shadow-lg overflow-hidden">
         <div className="p-4 h-96 overflow-y-scroll">
           {messages.map((msg, idx) => (
@@ -86,7 +91,8 @@ const ChatbotPage = () => {
           </button>
         </form>
       </div>
-    </div>
+     </div>
+      
   );
 };
 

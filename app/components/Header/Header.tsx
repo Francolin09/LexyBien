@@ -7,7 +7,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         <div className="text-2xl font-bold">
           <a href="/" className="hover:text-blue-400">
-            Nombre de la Firma
+            LEXY || Soluciones Legales
           </a>
         </div>
 
@@ -21,14 +21,13 @@ const Header: React.FC = () => {
           <a href="#Contacto" className="hover:text-blue-400">
             Contacto
           </a>  
-          <Link href="/login">
+          <Link href="/login" className='hover:text-blue-400'>
             Iniciar Sesion
           </Link>
         </nav>
 
        </div>
 
-      {/* Menú para móviles */}
       
     </header>
   );
