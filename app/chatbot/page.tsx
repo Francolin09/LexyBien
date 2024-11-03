@@ -23,14 +23,14 @@ const ChatbotPage = () => {
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/images/background.jpg')"
+            backgroundImage: "url('/images/FondoChatbot2.png')"
           }}
         >
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
         <div className="relative z-10">
           <Header />
-          <p className="text-white mb-4">Acceso denegado. <br/>Debes iniciar sesión.</p>
+          <p className="text-white mb-4">Acceso denegado. <br/>Debes iniciar sesión antes de usar nuestro chatbot.</p>
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
             onClick={() => signIn()}
