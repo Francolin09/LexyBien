@@ -11,7 +11,7 @@ import { IUsuario } from "@/models/usuario";
 const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuarios: IUsuario[], setUpdate: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [selectedConsultaId, setSelectedConsultaId] = useState<string | null>(null);
     const [modoEdicion, setModoEdicion] = useState(false);
-    const [abogadoSeleccionado, setAbogadoSeleccionado] = useState(detalle.abogado);
+    const [abogadoSeleccionado, setAbogadoSeleccionado] = useState<{ _id: string; nombre: string; email: string } | null>(detalle.abogado);
 
     const abogados = usuarios.filter(usuario => usuario.rol === "abogado")
 
@@ -27,50 +27,51 @@ const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuario
 
     const handleAbogadoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const selectedAbogadoId = event.target.value;
-      const nuevoAbogado = abogados.find(abogado => abogado._id === selectedAbogadoId);
-      if (nuevoAbogado) setAbogadoSeleccionado(nuevoAbogado);
-    };
-
-    const handleGuardarCambios = async () => {
-      if (!abogadoSeleccionado || !detalle._id) return;
-    
-      const consulta = {
-        _id: detalle._id,
-        mensaje: detalle.mensaje,
-        usuarioId: detalle.usuario._id, 
-        abogadoId: abogadoSeleccionado._id, 
-        estado: "asignado",
-        fecha_creacion: detalle.fecha_creacion,
-      };
       
-      try {
-        const response = await fetch(`/api/consultas`, { 
-          method: "PUT", 
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(consulta),
-        });
-    
-        if (!response.ok) {
-          throw new Error("Error al actualizar el abogado en la base de datos.");
-        }
-    
-        const updatedConsulta = await response.json(); 
-        console.log("Consulta actualizada:", updatedConsulta); 
-
-        setUpdate(prev => !prev);
-
-        setModoEdicion(false); 
-        alert("Cambios guardados exitosamente");
-
-        setRefrescartablita(prev => !prev);
-
-      } catch (error) {
-        console.error("Error al guardar los cambios:", error);
-        alert("Hubo un error al guardar los cambios");
+      if (selectedAbogadoId === "null") {
+          setAbogadoSeleccionado(null); 
+      } else {
+          const nuevoAbogado = abogados.find(abogado => abogado._id === selectedAbogadoId);
+          if (nuevoAbogado) setAbogadoSeleccionado(nuevoAbogado);
       }
+  };
+
+  const handleGuardarCambios = async () => {
+    if (!detalle._id) return;
+  
+    const consulta = {
+      _id: detalle._id,
+      mensaje: detalle.mensaje,
+      usuarioId: detalle.usuario._id,
+      abogadoId: abogadoSeleccionado ? abogadoSeleccionado._id : "",
+      estado: abogadoSeleccionado ? "asignado" : "no asignado",    
+      fecha_creacion: detalle.fecha_creacion,
     };
+  
+    try {
+      const response = await fetch(`/api/consultas`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(consulta),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Error al actualizar el abogado en la base de datos.");
+      }
+  
+      const updatedConsulta = await response.json();
+      console.log("Consulta actualizada:", updatedConsulta);
+  
+      setUpdate(prev => !prev);
+      setModoEdicion(false);
+  
+    } catch (error) {
+      console.error("Error al guardar los cambios:", error);
+      alert("Hubo un error al guardar los cambios");
+    }
+  };
 
     return (
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
@@ -124,6 +125,7 @@ const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuario
                             {abogado.nombre}
                           </option>
                           ))}
+                          <option value="null">Desvincular</option>
                         </select>
                       ) : (
                         <>
