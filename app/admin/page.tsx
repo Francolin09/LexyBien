@@ -7,9 +7,13 @@ import { IDetalle } from "@/models/detalle";
 import Acordion from "../components/Acordion";
 import Image from "next/image";
 import Visualizador from "../components/Visualizador";
+import { useSession, signIn } from 'next-auth/react';
+import { HiLogin } from "react-icons/hi";
 
 
 export default function Page() {
+
+  const { data: session, status } = useSession();
 
   const [usuarios, setUsers] = useState<IUsuario[]>([])
 
@@ -17,17 +21,41 @@ export default function Page() {
 
   const [detalles, setdetalles] = useState<IDetalle[]>([]);
 
-  useEffect(() => {
-    getUsers().then(users => setUsers(users))  
-  }, [])
+  const [update, setUpdate] = useState(false);
+
+
 
   useEffect(() => {
+    getUsers().then(users => setUsers(users))  
     getDetalles().then(detalles => setdetalles(detalles))
-  }, [])
+  }, [update])
+
 
   const cambiobuscador = (event: React.ChangeEvent<HTMLInputElement>) =>{
     setBusqueda(event.target.value); // esta funcion irá actualizando constantemente al tipear sobre el input
   };
+
+
+
+  /*if (status === 'loading') {
+    return <p>Cargando...</p>; 
+  }
+
+  // Si el usuario no está autenticado
+  if (!session || !session.user) {
+    return (
+      <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
+        <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión.</p>
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={() => signIn()} // Inicia sesión al hacer clic
+        >
+          Iniciar sesión
+        </button>
+      </div>
+    );
+  }*/
+
 
 
 
@@ -39,14 +67,24 @@ export default function Page() {
     <>
       <header className="bg-slate-900 flex justify-end lg:py-8 py-4 px-8">
         <div className="flex items-start gap-4">
-          <Image className="size-16 w-full h-full" width={100} height={100} src="https://www.freeiconspng.com/thumbs/profile-icon-png/am-a-19-year-old-multimedia-artist-student-from-manila--21.png" alt="" />
+          <div className="relative h-10 w-10">
+            <Image className="h-full w-full rounded-full object-cover object-center"
+              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt=""
+              width={100} height={100}                                 
+            />
+          </div>
           <div className="flex flex-col">
-          <span>
-            Juan
-          </span>
-          <button>
-            Cerrar sesion
-          </button>
+            <div>
+              <span className="text-white">
+                Bienvenido, papu! {/* aqui va el session */}
+              </span>
+            </div>
+            <div className="flex justify-start">
+              <button className=" bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
+                <HiLogin />
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -76,7 +114,7 @@ export default function Page() {
               </tr>
             </thead>
             {detalles.map(detalle => (
-              <Visualizador key={detalle._id} detalle={detalle}></Visualizador>             
+              <Visualizador key={detalle._id} detalle={detalle} usuarios={usuarios} setUpdate={setUpdate} ></Visualizador>             
             ))}
             
           </table>
