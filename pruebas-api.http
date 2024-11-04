@@ -1,0 +1,11 @@
+PUT http://localhost:3000/api/consultas
+Content-Type: application/json
+
+{
+  "_id": "6726c5d2de05dd1b13f485c0",
+  "mensaje": "post a put equisde",
+  "usuarioId": "123456789",
+  "abogadoId": "987654321",
+  "estado": "asignado",
+  "fecha_creacion": "02-11-2024"
+}

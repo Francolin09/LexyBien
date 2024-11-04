@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import connectMongo from '@/lib/mongoose';
 import Consulta from '@/models/consulta';
-import Usuario from '@/models/usuario';
 
 
 export async function GET() {
@@ -46,7 +45,8 @@ export async function GET() {
     {
       $addFields: {
         'abogado.nombre': { $ifNull: ['$abogado.nombre', 'No asignado'] },
-        'abogado.email': { $ifNull: ['$abogado.email', 'No asignado'] }
+        'abogado.email': { $ifNull: ['$abogado.email', 'No asignado'] },
+        'abogado._id': { $ifNull: ['$abogado._id', null] }
       }
     },
     {
@@ -54,8 +54,10 @@ export async function GET() {
         mensaje: 1,
         estado: 1,
         fecha_creacion: 1,
+        'usuario._id': 1,            
         'usuario.nombre': 1,
         'usuario.email': 1,
+        'abogado._id': 1,            
         'abogado.nombre': 1,
         'abogado.email': 1
       }
