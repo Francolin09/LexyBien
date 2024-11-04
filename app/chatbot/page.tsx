@@ -76,7 +76,7 @@ const ChatbotPage = () => {
       </div>
 
       {/* Contenido principal */}
-      <div className="relative z-10 w-full flex flex-col items-center">
+      <div className="relative z-10 w-full flex flex-col items-center ">
         <Header />
         <h1 className="text-4xl mb-5 text-white font-bold">
           Lexy, tu asistente legal virtual
