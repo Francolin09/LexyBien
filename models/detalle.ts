@@ -6,10 +6,12 @@ interface IDetalle {
     estado: string;
     fecha_creacion: string;
     usuario: {
+      _id: string;
       nombre: string;
       email: string;
     };
     abogado: {
+      _id: string
       nombre: string;
       email: string;
     };
