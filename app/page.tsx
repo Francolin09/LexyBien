@@ -37,14 +37,3 @@ const Page = () => {
 export default Page;
 
 
-// 'use client'
-
-// const page = () => {
-//   return (
-//     <div>
-//       <h1>Hola que tal</h1>
-//     </div>
-//   )
-// }
-
-// export default page

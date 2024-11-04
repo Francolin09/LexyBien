@@ -1,48 +1,99 @@
 import React from 'react';
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
-const Footer: React.FC = () => {
+interface SocialLink {
+  icon: React.ReactNode;
+  href: string;
+  label: string;
+}
+
+const Footer = () => {
+  const socialLinks: SocialLink[] = [
+    {
+      icon: <Facebook className="w-5 h-5" />,
+      href: "https://facebook.com/",
+      label: "Facebook"
+    },
+    {
+      icon: <Twitter className="w-5 h-5" />,
+      href: "https://twitter.com/",
+      label: "Twitter"
+    },
+    {
+      icon: <Linkedin className="w-5 h-5" />,
+      href: "https://linkedin.com/",
+      label: "LinkedIn"
+    },
+    {
+      icon: <Instagram className="w-5 h-5" />,
+      href: "https://instagram.com/",
+      label: "Instagram"
+    }
+  ];
+
+  const navigation = [
+    { name: 'Inicio', href: '/' },
+    { name: 'Servicios', href: '/servicios' },
+    { name: 'Equipo', href: '/equipo' },
+    { name: 'Contacto', href: '/contacto' },
+  ];
+
   return (
-    <footer className="bg-gray-900 text-white py-8">
-      <div className="container mx-auto px-4">
-        {/* Sección de enlaces de navegación */}
-        <div className="flex flex-col md:flex-row items-center justify-between mb-4">
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-bold">Nuestra Firma</h3>
-            <p className="text-gray-400 mt-2">Proveemos soluciones legales confiables y personalizadas para nuestros clientes.<br></br>
-                Toda la informacion que necesitas para resolver tus dudas a un solo click!
+    <footer className="bg-slate-900 text-gray-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          {/* Logo and Description */}
+          <div>
+            <h2 className="text-2xl font-bold text-white mb-4">
+              LEXY || Soluciones Legales
+            </h2>
+            <p className="mb-4 text-sm">
+              Proveemos soluciones legales confiables y personalizadas para nuestros clientes.
+              Toda la información que necesitas para resolver tus dudas a un solo click!
             </p>
           </div>
 
-          <nav className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
-            <a href="#inicio" className="text-gray-400 hover:text-white">Inicio</a>
-            <a href="#servicios" className="text-gray-400 hover:text-white">Servicios</a>
-            <a href="#team" className="text-gray-400 hover:text-white">Equipo</a>
-            <a href="#contacto" className="text-gray-400 hover:text-white">Contacto</a>
-          </nav>
+          {/* Navigation Links */}
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-white font-semibold mb-4">Enlaces</h3>
+              <ul className="space-y-2">
+                {navigation.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="hover:text-white transition-colors duration-200"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
 
-        {/* Sección de redes sociales */}
-        <div className="flex justify-center space-x-4 mb-4">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-            <FaFacebook size={24} />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-            <FaTwitter size={24} />
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-            <FaLinkedin size={24} />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-            <FaInstagram size={24} />
-          </a>
+        {/* Social Links */}
+        <div className="border-t border-gray-700 pt-8 mt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex space-x-6 mb-4 md:mb-0">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-gray-400 hover:text-white transition-colors duration-200"
+                  aria-label={item.label}
+                >
+                  {item.icon}
+                </a>
+              ))}
+            </div>
+            <p className="text-sm text-gray-400">
+              © {new Date().getFullYear()} Lexy. Todos los derechos reservados.
+            </p>
+          </div>
         </div>
-
-        {/* Derechos de autor */}
-        <div className="text-center text-gray-500">
-          <p>© {new Date().getFullYear()} Lexy. Todos los derechos reservados.</p>
-        </div>
-      </div>    
+      </div>
     </footer>
   );
 };
