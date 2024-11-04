@@ -11,22 +11,22 @@ const Footer = () => {
   const socialLinks: SocialLink[] = [
     {
       icon: <Facebook className="w-5 h-5" />,
-      href: "https://facebook.com/lexy",
+      href: "https://facebook.com/",
       label: "Facebook"
     },
     {
       icon: <Twitter className="w-5 h-5" />,
-      href: "https://twitter.com/lexy",
+      href: "https://twitter.com/",
       label: "Twitter"
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com/company/lexy",
+      href: "https://linkedin.com/",
       label: "LinkedIn"
     },
     {
       icon: <Instagram className="w-5 h-5" />,
-      href: "https://instagram.com/lexy",
+      href: "https://instagram.com/",
       label: "Instagram"
     }
   ];
