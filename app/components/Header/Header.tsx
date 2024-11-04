@@ -1,12 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Efecto para detectar scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -16,6 +14,34 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    if (sectionId === 'inicio') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+    setIsMenuOpen(false);
+  };
+
+  const navigationItems = [
+    { name: 'Servicios', id: 'servicios' },
+    { name: 'Equipo', id: 'equipo' },
+    { name: 'Contacto', id: 'contacto' },
+  ];
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       isScrolled ? 'bg-slate-900' : 'bg-transparent text-white'
@@ -24,38 +50,37 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <span className={`font-bold text-xl ${
+            <button 
+              onClick={() => scrollToSection('inicio')} 
+              className="flex items-center cursor-pointer group"
+            >
+              <span className={`font-bold text-xl transition-colors duration-300 ${
                 isScrolled ? 'text-white' : 'text-white'
-              }`}>
+              } group-hover:text-blue-600`}>
                 LEXY <span className="text-blue-600">||</span> Soluciones Legales
               </span>
-            </Link>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-8">
-            {[
-              { name: 'Servicios', href: '/servicios' },
-              { name: 'Equipo', href: '/equipo' },
-              { name: 'Contacto', href: '/contacto' },
-            ].map((item) => (
-              <Link
+            {navigationItems.map((item) => (
+              <button
                 key={item.name}
-                href={item.href}
+                onClick={() => scrollToSection(item.id)}
                 className={`px-3 py-2 text-sm font-medium transition-colors duration-300 hover:text-blue-600 ${
                   isScrolled ? 'text-white' : 'text-white'
                 }`}
               >
                 {item.name}
-              </Link>
+              </button>
             ))}
-            <Link
-              href="/iniciar-sesion"
+            <button
+              onClick={() => scrollToSection('contacto')}
               className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
             >
               Iniciar Sesión
-            </Link>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -68,7 +93,6 @@ const Navbar = () => {
               aria-expanded="false"
             >
               <span className="sr-only">Abrir menú principal</span>
-              {/* Icono de menú */}
               {!isMenuOpen ? (
                 <svg className="block h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -86,27 +110,21 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
         <div className="flex flex-col px-4 pt-2 pb-3 space-y-1 bg-white shadow-lg">
-          {[
-            { name: 'Servicios', href: '/servicios' },
-            { name: 'Equipo', href: '/equipo' },
-            { name: 'Contacto', href: '/contacto' },
-          ].map((item) => (
-            <Link
+          {navigationItems.map((item) => (
+            <button
               key={item.name}
-              href={item.href}
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => scrollToSection(item.id)}
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md text-left"
             >
               {item.name}
-            </Link>
+            </button>
           ))}
-          <Link
-            href="/iniciar-sesion"
-            className="block px-3 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md text-center"
-            onClick={() => setIsMenuOpen(false)}
+          <button
+            onClick={() => scrollToSection('contacto')}
+            className="block w-full px-3 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md text-center"
           >
             Iniciar Sesión
-          </Link>
+          </button>
         </div>
       </div>
     </nav>
