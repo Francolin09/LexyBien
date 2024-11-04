@@ -40,7 +40,7 @@ const Servicios = () => {
               <span className="text-blue-600 font-medium">¡No dudes en usarlo!</span>
             </p>
             <div className="flex justify-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
+              <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
                 Consulta Lexy
               </button>
             </div>
@@ -58,7 +58,7 @@ const Servicios = () => {
               Mantente informado sobre el estado de tus casos en todo momento. Proporcionamos actualizaciones detalladas y oportunas para que siempre estés al tanto de tu situación legal.
             </p>
             <div className="flex justify-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
+              <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
                 Verificar Caso
               </button>
             </div>
@@ -78,7 +78,7 @@ const Servicios = () => {
               <span className="text-blue-600 font-medium">¡No dudes en ponerte en contacto con nosotros!</span>
             </p>
             <div className="flex justify-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
+              <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
                 <a href="#Contacto">Solicitar Asesoría</a>
               </button>
             </div>
