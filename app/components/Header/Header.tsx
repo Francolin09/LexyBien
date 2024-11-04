@@ -1,4 +1,5 @@
 'use client';
+import { Link } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const Navbar = () => {
@@ -50,16 +51,18 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <button 
-              onClick={() => scrollToSection('inicio')} 
-              className="flex items-center cursor-pointer group"
-            >
-              <span className={`font-bold text-xl transition-colors duration-300 ${
-                isScrolled ? 'text-white' : 'text-white'
-              } group-hover:text-blue-600`}>
-                LEXY <span className="text-blue-600">||</span> Soluciones Legales
-              </span>
-            </button>
+            
+              <button 
+                onClick={() => (window.location.href = '/')} 
+                className="flex items-center cursor-pointer group"
+              >
+                <span className={`font-bold text-xl transition-colors duration-300 ${
+                  isScrolled ? 'text-white' : 'text-white'
+                } group-hover:text-blue-600`}>
+                  LEXY <span className="text-blue-600">||</span> Soluciones Legales
+                </span>
+              </button>
+           
           </div>
 
           {/* Desktop Navigation */}
@@ -75,12 +78,18 @@ const Navbar = () => {
                 {item.name}
               </button>
             ))}
+            
+            
             <button
-              onClick={() => scrollToSection('contacto')}
+              onClick={() => (window.location.href = '/login')}
+              
               className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
             >
               Iniciar Sesión
             </button>
+            
+
+            
           </div>
 
           {/* Mobile menu button */}
@@ -129,6 +138,5 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
-
+};  
 export default Navbar;

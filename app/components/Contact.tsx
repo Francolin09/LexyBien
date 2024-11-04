@@ -84,6 +84,7 @@ const ContactForm = () => {
   };
 
   return (
+    <section id='contacto'>
     <div className="relative bg-gradient-to-b from-gray-50 to-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
@@ -205,6 +206,7 @@ const ContactForm = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

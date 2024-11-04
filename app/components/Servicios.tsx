@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { MessageSquare, FileSearch, Users } from 'lucide-react';
+import Link from 'next/link';
 
 const Servicios = () => {
   return (
@@ -40,9 +41,11 @@ const Servicios = () => {
               <span className="text-blue-600 font-medium">¡No dudes en usarlo!</span>
             </p>
             <div className="flex justify-center">
-              <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
-                Consulta Lexy
-              </button>
+            <Link href="/chatbot">
+            <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
+              Consulta Rapida
+            </button>
+            </Link>
             </div>
           </div>
 
@@ -52,14 +55,14 @@ const Servicios = () => {
               <FileSearch size={48} className="text-blue-600" />
             </div>
             <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
-              Seguimiento de Casos
+              Seguimiento de Causas
             </h2>
             <p className="text-gray-600 text-center mb-8">
               Mantente informado sobre el estado de tus casos en todo momento. Proporcionamos actualizaciones detalladas y oportunas para que siempre estés al tanto de tu situación legal.
             </p>
             <div className="flex justify-center">
               <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
-                Verificar Caso
+                Verificar estado
               </button>
             </div>
           </div>
