@@ -26,16 +26,16 @@ const TeamSection: React.FC = () => {
   return (
     <section
       id="equipo"
-      className="relative min-h-screen py-24 flex items-center bg-gradient-to-b from-gray-900/90 to-gray-900/90"
+      className="relative min-h-screen py-24 flex items-center bg-gradient-to-b "
     >
       {/* Imagen de fondo con opacidad */}
       <div className="absolute inset-0">
         <img
           src="/images/fondoTeam.jpg"
           alt="Background"
-          className="w-full h-full object-cover opacity-30" // Ajusta la opacidad aquí
+          className="w-full h-full object-cover " // Ajusta la opacidad aquí
         />
-        <div className="absolute inset-0 bg-gray-900/50" /> {/* Capa adicional de opacidad */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" /> {/* Capa adicional de opacidad */}
       </div>
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
