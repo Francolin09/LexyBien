@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { getUsers } from "@/app/admin/utils";
 import * as React from "react"
 import { IUsuario } from '@/models/usuario';
-import { IDetalle } from "@/models/detalle";
 import Acordion from "../components/Acordion";
 import Image from "next/image";
 import { useSession, signIn } from 'next-auth/react';
@@ -19,7 +18,12 @@ export default function Page() {
 
   const [busqueda, setBusqueda] = useState('');
 
+  const [busqueda2, setBusqueda2] = useState('');
+
   const [update, setUpdate] = useState(false);
+
+  const [rolFiltro, setRolFiltro] = useState('');
+
 
 
 
@@ -32,7 +36,25 @@ export default function Page() {
     setBusqueda(event.target.value); // esta funcion irá actualizando constantemente al tipear sobre el input
   };
 
+  const cambiobuscador2 = (event: React.ChangeEvent<HTMLInputElement>) =>{
+    setBusqueda2(event.target.value); // esta funcion irá actualizando constantemente al tipear sobre el input
+  };
 
+  const usuariofiltrado1: IUsuario[] = usuarios.filter(usuario =>
+    usuario.nombre.toLowerCase().includes(busqueda.toLowerCase()) 
+    );
+
+  const usuariofiltrado2: IUsuario[] = usuarios.filter(usuario =>
+    usuario.nombre.toLowerCase().includes(busqueda2.toLowerCase()) 
+    );
+
+  const cambioFiltro = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setRolFiltro(event.target.value);
+  };
+
+  const usuariosFiltradosPorRol = rolFiltro
+    ? usuariofiltrado2.filter(usuario => usuario.rol === rolFiltro)
+    : usuariofiltrado2;
 
   /*if (status === 'loading') {
     return <p>Cargando...</p>; 
@@ -53,12 +75,6 @@ export default function Page() {
     );
   }
 */
-
-
-
-  const usuariofiltrado: IUsuario[] = usuarios.filter(usuario =>
-  usuario.nombre.toLowerCase().includes(busqueda.toLowerCase()) 
-  );
 
   return (
     <>
@@ -93,7 +109,7 @@ export default function Page() {
         </div>
         <div className="max-w-screen-xl mx-auto px-5 bg-slate-950 min-h-sceen">
 	        <div className="flex flex-col items-center"></div>
-          {usuariofiltrado.filter(usuario => usuario.rol === 'usuario').map(usuario => (
+          {usuariofiltrado1.filter(usuario => usuario.rol === 'usuario').map(usuario => (
             <Acordion key= {usuario._id} nombre={usuario.nombre} informacion={usuario.email} rol={usuario.rol}></Acordion>
           ))}
         </div>
@@ -109,9 +125,12 @@ export default function Page() {
                             <div className="flex flex-row mb-1 sm:mb-0">
                                 <div className="relative">
                                     <select
+                                        value={rolFiltro}
+                                        onChange={cambioFiltro}
                                         className="h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                        <option>usuarios</option>
-                                        <option>abogados</option>
+                                        <option value="">Todos</option>
+                                        <option value="usuario">Usuarios</option>
+                                        <option value="abogado">Abogados</option>
                                     </select>
                                     <div
                                         className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -129,7 +148,7 @@ export default function Page() {
                                         </path>
                                     </svg>
                                 </span>
-                                <input placeholder="Busqueda"
+                                <input value={busqueda2} onChange={cambiobuscador2} placeholder="Busqueda"
                                     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                             </div>
                         </div>
@@ -156,8 +175,8 @@ export default function Page() {
                                             </th>
                                         </tr>
                                     </thead>
-                                    {usuarios.map(usuario => (
-                                        <Panelcuentas key={usuario._id} usuarios={usuario}></Panelcuentas>
+                                    {usuariosFiltradosPorRol.map(usuario => (
+                                        <Panelcuentas key={usuario._id} usuario={usuario} usuarios={usuariosFiltradosPorRol} setUpdate={setUpdate}></Panelcuentas>
                                     ))}
                                 </table>
                             </div>
