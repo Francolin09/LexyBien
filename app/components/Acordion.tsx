@@ -1,4 +1,4 @@
-const Acordion = ({nombre,informacion}:{nombre:string, informacion:string}) => {
+const Acordion = ({nombre,informacion, rol}:{nombre:string, informacion:string, rol:string}) => {
     return (
         <div className="grid divide-y bg-slate-950 max-w-xl mx-auto mt-8">
             <div className="py-5">
@@ -12,6 +12,9 @@ const Acordion = ({nombre,informacion}:{nombre:string, informacion:string}) => {
                     </summary>
                     <p className="text-neutral-600 mt-3 group-open:animate-fadeIn">
                         {informacion}
+                    </p>
+                    <p className="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                        {rol}
                     </p>
                 </details>
             </div>
