@@ -37,12 +37,12 @@ export default function Page() {
 
 
 
-  /*if (status === 'loading') {
+  if (status === 'loading') {
     return <p>Cargando...</p>; 
   }
 
   // Si el usuario no está autenticado
-  if (!session || !session.user) {
+  /*if (!session || !session.user) {
     return (
       <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
         <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión.</p>
@@ -77,7 +77,7 @@ export default function Page() {
           <div className="flex flex-col">
             <div>
               <span className="text-white">
-                Bienvenido, papu! {/* aqui va el session */}
+                Bienvenido, papu
               </span>
             </div>
             <div className="flex justify-start">
@@ -92,12 +92,12 @@ export default function Page() {
       <aside className="flex-[2] bg-slate-950 lg:ml-8 p-8">
         <h2 className="text-2xl font-semibold text-white py-2 text-center">Listado de Abogados</h2>
         <div className="py-6">
-          <input value={busqueda} onChange={cambiobuscador} type="text" placeholder="Buscar..." className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" />
+          <input value={busqueda} onChange={cambiobuscador} type="text" placeholder="Buscar..." className="text-white flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" />
         </div>
         <div className="max-w-screen-xl mx-auto px-5 bg-slate-950 min-h-sceen">
 	        <div className="flex flex-col items-center"></div>
           {usuariofiltrado.filter(usuario => usuario.rol === 'abogado').map(usuario => (
-            <Acordion key= {usuario._id} nombre={usuario.nombre} informacion={usuario.email}></Acordion>
+            <Acordion key= {usuario._id} nombre={usuario.nombre} informacion={usuario.email} rol={usuario.rol}></Acordion>
           ))}
         </div>
       </aside>

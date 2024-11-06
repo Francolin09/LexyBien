@@ -13,7 +13,7 @@ const usuarioSchema = new Schema({
   nombre: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  rol: { type: String, default:"user" },
+  rol: { type: String, default:"usuario" },
 });
 
 const Usuario = models.Usuario || model<IUsuario>('Usuario', usuarioSchema, 'usuarios');

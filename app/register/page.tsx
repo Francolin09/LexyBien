@@ -85,14 +85,13 @@ const RegisterPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
     // llamada a la api para registrar al usuario
     const response = await fetch('/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ nombre, email, password }),
+      body: JSON.stringify({ nombre, email, password}),
     });
 
     const data = await response.json();
@@ -139,7 +138,7 @@ const RegisterPage = () => {
               required 
             />
           </div>
-          <button 
+          <button
             type="submit" 
             className="bg-gray-900 p-2 rounded hover:bg-gray-800 transition-all text-white"
           >
