@@ -56,7 +56,7 @@ export default function Page() {
     ? usuariofiltrado2.filter(usuario => usuario.rol === rolFiltro)
     : usuariofiltrado2;
 
-  /*if (status === 'loading') {
+  if (status === 'loading') {
     return <p>Cargando...</p>; 
   }
 
@@ -74,7 +74,7 @@ export default function Page() {
       </div>
     );
   }
-*/
+
 
   return (
     <>

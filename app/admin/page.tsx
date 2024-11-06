@@ -42,7 +42,7 @@ export default function Page() {
   }
 
   // Si el usuario no está autenticado
-  /*if (!session || !session.user) {
+  if (!session || !session.user) {
     return (
       <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
         <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión.</p>
@@ -54,7 +54,7 @@ export default function Page() {
         </button>
       </div>
     );
-  }*/
+  }
 
 
 
