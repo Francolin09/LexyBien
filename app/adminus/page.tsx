@@ -131,6 +131,7 @@ export default function Page() {
                                         <option value="">Todos</option>
                                         <option value="usuario">Usuarios</option>
                                         <option value="abogado">Abogados</option>
+                                        <option value="admin">Admin</option>
                                     </select>
                                     <div
                                         className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -176,7 +177,7 @@ export default function Page() {
                                         </tr>
                                     </thead>
                                     {usuariosFiltradosPorRol.map(usuario => (
-                                        <Panelcuentas key={usuario._id} usuario={usuario} usuarios={usuariosFiltradosPorRol} setUpdate={setUpdate}></Panelcuentas>
+                                        <Panelcuentas key={usuario._id} usuario={usuario} setUpdate={setUpdate}></Panelcuentas>
                                     ))}
                                 </table>
                             </div>

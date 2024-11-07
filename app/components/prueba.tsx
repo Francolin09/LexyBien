@@ -1,4 +1,4 @@
-const Prueba = ({nombre,informacion}:{nombre:string, informacion:string}) => {
+const Prueba = () => {
   return (
         <div>hola</div>
   );

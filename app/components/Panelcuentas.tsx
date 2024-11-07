@@ -1,10 +1,10 @@
-import Usuario, { IUsuario } from "@/models/usuario";
+import { IUsuario } from "@/models/usuario";
 import Image from "next/image";
 import { useState } from "react";
 import { FaRegTrashAlt, FaSave } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 
-const Panelcuentas = ({usuario, usuarios, setUpdate}:{usuario: IUsuario, usuarios: IUsuario[], setUpdate: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const Panelcuentas = ({usuario, setUpdate}:{usuario: IUsuario, setUpdate: React.Dispatch<React.SetStateAction<boolean>> }) => {
 
     const [modoEdicion, setModoEdicion] = useState(false);
     const [rolSeleccionado, setRolSeleccionado] = useState(usuario.rol || null);
@@ -51,6 +51,44 @@ const Panelcuentas = ({usuario, usuarios, setUpdate}:{usuario: IUsuario, usuario
         } catch (error) {
           console.error("Error al guardar los cambios:", error);
           alert("Hubo un error al guardar los cambios");
+        }
+      };
+
+      const handleEliminar = async () => {
+
+        const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este usuario?");
+        if (!isConfirmed) {
+          return;
+  }
+        if (!usuario._id) {
+            return;}
+      
+        const usuarioeliminar = {
+          _id: usuario._id,
+          rol: rolSeleccionado
+        };
+      
+        try {
+          const response = await fetch(`/api/usuarios`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(usuarioeliminar),
+          });
+      
+          if (!response.ok) {
+            throw new Error("Error al eliminar usuario.");
+          }
+      
+          const updatedUsuario = await response.json();
+          console.log("Usuario eliminado:", updatedUsuario);
+      
+          setUpdate(prev => !prev);
+      
+        } catch (error) {
+          console.error("Error al eliminar:", error);
+          alert("Hubo un error al elimiar");
         }
       };
 
@@ -128,7 +166,7 @@ const Panelcuentas = ({usuario, usuarios, setUpdate}:{usuario: IUsuario, usuario
            </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   <div className="flex justify-end gap-4">
-                  <button className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-200">
+                  <button onClick={handleEliminar} className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-200">
                     <FaRegTrashAlt />
                   </button>
                   <button
