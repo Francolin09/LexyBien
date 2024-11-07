@@ -1,10 +1,11 @@
+import { UsuariosOcupados } from "@/models/ocupado";
 import { IUsuario } from "@/models/usuario";
 import Image from "next/image";
 import { useState } from "react";
 import { FaRegTrashAlt, FaSave } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 
-const Panelcuentas = ({usuario, setUpdate}:{usuario: IUsuario, setUpdate: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const Panelcuentas = ({usuario, ocupados, setUpdate}:{usuario: IUsuario, ocupados: UsuariosOcupados, setUpdate: React.Dispatch<React.SetStateAction<boolean>> }) => {
 
     const [modoEdicion, setModoEdicion] = useState(false);
     const [rolSeleccionado, setRolSeleccionado] = useState(usuario.rol || null);
@@ -62,7 +63,16 @@ const Panelcuentas = ({usuario, setUpdate}:{usuario: IUsuario, setUpdate: React.
   }
         if (!usuario._id) {
             return;}
-      
+          
+
+        const usuarioIdOcupado = ocupados.usuarioIds.includes(usuario._id);
+        const abogadoIdOcupado = ocupados.abogadoIds.includes(usuario._id);
+    
+        if (usuarioIdOcupado || abogadoIdOcupado) {
+            alert("No se puede eliminar este usuario/abogado porque está asociado a una consulta.");
+            return;
+        }
+    
         const usuarioeliminar = {
           _id: usuario._id,
           rol: rolSeleccionado
