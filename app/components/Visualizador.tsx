@@ -15,8 +15,6 @@ const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuario
 
     const abogados = usuarios.filter(usuario => usuario.rol === "abogado")
 
-    const [refrescartablita, setRefrescartablita] = useState(false);
-
     const openModal = (id: string) => {
         setSelectedConsultaId(id);
       };
