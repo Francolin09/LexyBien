@@ -1,40 +1,42 @@
 'use client'
 import { useEffect, useState } from "react";
-import { getUsers } from "@/app/admin/utils";
+import { getOcupados, getUsers } from "@/app/admin/utils";
 import * as React from "react"
 import { IUsuario } from '@/models/usuario';
-import { IDetalle } from "@/models/detalle";
 import Acordion from "../components/Acordion";
 import Image from "next/image";
-import { useSession, signIn } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { HiLogin } from "react-icons/hi";
 import Panelcuentas from "../components/Panelcuentas";
+import { UsuariosOcupados } from "@/models/ocupado";
+import { useRouter } from 'next/navigation';
 
 
 export default function Page() {
 
   const { data: session, status } = useSession();
-
   const [usuarios, setUsers] = useState<IUsuario[]>([])
-
   const [busqueda, setBusqueda] = useState('');
-
+  const [busqueda2, setBusqueda2] = useState('');
   const [update, setUpdate] = useState(false);
-
-
+  const [rolFiltro, setRolFiltro] = useState('');
+  const [usuariosOcupados, setUsuariosOcupados] = useState<UsuariosOcupados>({
+    abogadoIds: [],
+    usuarioIds: []
+  });
+  const router = useRouter();
 
   useEffect(() => {
-    getUsers().then(users => setUsers(users))  
-  }, [update])
+    const fetchData = async () => {
+    const users = await getUsers();
+    const ocupadosData = await getOcupados();
+    setUsers(users);
+    setUsuariosOcupados(ocupadosData);
+    };
+    fetchData();
+  }, [update]);
 
-
-  const cambiobuscador = (event: React.ChangeEvent<HTMLInputElement>) =>{
-    setBusqueda(event.target.value); // esta funcion irá actualizando constantemente al tipear sobre el input
-  };
-
-
-
-  /*if (status === 'loading') {
+  if (status === 'loading') {
     return <p>Cargando...</p>; 
   }
 
@@ -52,13 +54,36 @@ export default function Page() {
       </div>
     );
   }
-*/
+
+  const cambiobuscador = (event: React.ChangeEvent<HTMLInputElement>) =>{
+    setBusqueda(event.target.value); // esta funcion irá actualizando constantemente al tipear sobre el input
+  };
+
+  const cambiobuscador2 = (event: React.ChangeEvent<HTMLInputElement>) =>{
+    setBusqueda2(event.target.value); // esta funcion irá actualizando constantemente al tipear sobre el input
+  };
+
+  const usuariofiltrado1: IUsuario[] = usuarios.filter(usuario =>
+    usuario.nombre.toLowerCase().includes(busqueda.toLowerCase()) 
+    );
+
+  const usuariofiltrado2: IUsuario[] = usuarios.filter(usuario =>
+    usuario.nombre.toLowerCase().includes(busqueda2.toLowerCase()) 
+    );
+
+  const cambioFiltro = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setRolFiltro(event.target.value);
+  };
 
 
+  const cambioadmin = () => {
+    router.push('/admin');
+  };
 
-  const usuariofiltrado: IUsuario[] = usuarios.filter(usuario =>
-  usuario.nombre.toLowerCase().includes(busqueda.toLowerCase()) 
-  );
+  const usuariosFiltradosPorRol = rolFiltro
+    ? usuariofiltrado2.filter(usuario => usuario.rol === rolFiltro)
+    : usuariofiltrado2;
+
 
   return (
     <>
@@ -74,12 +99,18 @@ export default function Page() {
           <div className="flex flex-col">
             <div>
               <span className="text-white">
-                Bienvenido, pauh
+                Bienvenido, {session?.user.nombre}
               </span>
             </div>
             <div className="flex justify-start">
-              <button className=" bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
+              <button 
+                onClick={() => signOut({callbackUrl:'/'})}
+                className=" bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
                 <HiLogin />
+              </button>
+              <button onClick={cambioadmin}
+                className=" bg-red-700 mx-3 px-2 text-white font-semibold rounded-lg shadow-md hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75 transition duration-200">
+                Ir a Consultas
               </button>
             </div>
           </div>
@@ -93,7 +124,7 @@ export default function Page() {
         </div>
         <div className="max-w-screen-xl mx-auto px-5 bg-slate-950 min-h-sceen">
 	        <div className="flex flex-col items-center"></div>
-          {usuariofiltrado.filter(usuario => usuario.rol === 'usuario').map(usuario => (
+          {usuariofiltrado1.filter(usuario => usuario.rol === 'usuario').map(usuario => (
             <Acordion key= {usuario._id} nombre={usuario.nombre} informacion={usuario.email} rol={usuario.rol}></Acordion>
           ))}
         </div>
@@ -109,9 +140,13 @@ export default function Page() {
                             <div className="flex flex-row mb-1 sm:mb-0">
                                 <div className="relative">
                                     <select
+                                        value={rolFiltro}
+                                        onChange={cambioFiltro}
                                         className="h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                        <option>usuarios</option>
-                                        <option>abogados</option>
+                                        <option value="">Todos</option>
+                                        <option value="usuario">Usuarios</option>
+                                        <option value="abogado">Abogados</option>
+                                        <option value="admin">Admin</option>
                                     </select>
                                     <div
                                         className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -129,7 +164,7 @@ export default function Page() {
                                         </path>
                                     </svg>
                                 </span>
-                                <input placeholder="Busqueda"
+                                <input value={busqueda2} onChange={cambiobuscador2} placeholder="Busqueda"
                                     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                             </div>
                         </div>
@@ -156,8 +191,8 @@ export default function Page() {
                                             </th>
                                         </tr>
                                     </thead>
-                                    {usuarios.map(usuario => (
-                                        <Panelcuentas key={usuario._id} usuarios={usuario}></Panelcuentas>
+                                    {usuariosFiltradosPorRol.map(usuario => (
+                                        <Panelcuentas key={usuario._id} usuario={usuario} ocupados={usuariosOcupados} setUpdate={setUpdate}></Panelcuentas>
                                     ))}
                                 </table>
                             </div>

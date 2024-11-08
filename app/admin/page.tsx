@@ -7,34 +7,30 @@ import { IDetalle } from "@/models/detalle";
 import Acordion from "../components/Acordion";
 import Image from "next/image";
 import Visualizador from "../components/Visualizador";
-import { useSession, signIn } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { HiLogin } from "react-icons/hi";
+import { useRouter } from 'next/navigation';
 
 
 export default function Page() {
 
   const { data: session, status } = useSession();
-
   const [usuarios, setUsers] = useState<IUsuario[]>([])
-
   const [busqueda, setBusqueda] = useState('');
-
   const [detalles, setdetalles] = useState<IDetalle[]>([]);
-
   const [update, setUpdate] = useState(false);
-
+  const router = useRouter();
 
 
   useEffect(() => {
-    getUsers().then(users => setUsers(users))  
-    getDetalles().then(detalles => setdetalles(detalles))
-  }, [update])
-
-
-  const cambiobuscador = (event: React.ChangeEvent<HTMLInputElement>) =>{
-    setBusqueda(event.target.value); // esta funcion irá actualizando constantemente al tipear sobre el input
-  };
-
+    const fetchData = async () => {
+      const users = await getUsers();
+      const detallesData = await getDetalles();
+      setUsers(users);
+      setdetalles(detallesData);
+    };
+    fetchData();
+  }, [update]);
 
 
   if (status === 'loading') {
@@ -42,7 +38,7 @@ export default function Page() {
   }
 
   // Si el usuario no está autenticado
-  /*if (!session || !session.user) {
+  if (!session || !session.user) {
     return (
       <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
         <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión.</p>
@@ -54,10 +50,15 @@ export default function Page() {
         </button>
       </div>
     );
-  }*/
+  }
 
+  const cambiobuscador = (event: React.ChangeEvent<HTMLInputElement>) =>{
+      setBusqueda(event.target.value); // esta funcion irá actualizando constantemente al tipear sobre el input
+  };
 
-
+  const cambioadminus = () => {
+      router.push('/adminus');
+  };
 
   const usuariofiltrado: IUsuario[] = usuarios.filter(usuario =>
   usuario.nombre.toLowerCase().includes(busqueda.toLowerCase()) 
@@ -77,12 +78,17 @@ export default function Page() {
           <div className="flex flex-col">
             <div>
               <span className="text-white">
-                Bienvenido, papu
+              Bienvenido, {session?.user.nombre}
               </span>
             </div>
             <div className="flex justify-start">
-              <button className=" bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
+              <button onClick={() => signOut({callbackUrl:'/'})}
+                className=" bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
                 <HiLogin />
+              </button>
+              <button onClick={cambioadminus}
+                className=" bg-green-700 mx-3 px-2 text-white font-semibold rounded-lg shadow-md hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 transition duration-200">
+                Ir a cuentas
               </button>
             </div>
           </div>

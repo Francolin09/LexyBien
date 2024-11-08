@@ -15,8 +15,6 @@ const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuario
 
     const abogados = usuarios.filter(usuario => usuario.rol === "abogado")
 
-    const [refrescartablita, setRefrescartablita] = useState(false);
-
     const openModal = (id: string) => {
         setSelectedConsultaId(id);
       };
@@ -34,6 +32,46 @@ const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuario
           const nuevoAbogado = abogados.find(abogado => abogado._id === selectedAbogadoId);
           if (nuevoAbogado) setAbogadoSeleccionado(nuevoAbogado);
       }
+  };
+
+  const handleEliminarConsulta = async () => {
+    if (!detalle._id) return;
+
+    const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este usuario?");
+        if (!isConfirmed) {
+          return;}
+  
+    const consultaeliminada = {
+      _id: detalle._id,
+      mensaje: detalle.mensaje,
+      usuarioId: detalle.usuario._id,
+      abogadoId: abogadoSeleccionado ? abogadoSeleccionado._id : "",
+      estado: abogadoSeleccionado ? "asignado" : "no asignado",    
+      fecha_creacion: detalle.fecha_creacion,
+    };
+  
+    try {
+      const response = await fetch(`/api/consultas`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(consultaeliminada),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Error al eliminar consulta en la base de datos.");
+      }
+  
+      const updatedConsulta = await response.json();
+      console.log("Consulta eliminada:", updatedConsulta);
+  
+      setUpdate(prev => !prev);
+  
+    } catch (error) {
+      console.error("Error al eliminar cambios:", error);
+      alert("Hubo un error al eliminar los cambios");
+    }
   };
 
   const handleGuardarCambios = async () => {
@@ -143,11 +181,18 @@ const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuario
                     </div>
                   </div>
                 </td>
+                {/* SECCIÓN FECHA CONSULTA */}
+                <td className="px-6 py-4">
+                  <div className="text-sm flex">
+                      <span>{detalle.fecha_creacion}</span>
+                  </div>
+                </td>
 
                 {/*SECCION BOTONES BORRAR-GUARDAR-DETALLES */}
                 <td className="px-6 py-4">
                   <div className="flex justify-end gap-4">
-                  <button className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-200">
+                  <button onClick={handleEliminarConsulta}
+                  className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-200">
                     <FaRegTrashAlt />
                   </button>
                   <button onClick={handleGuardarCambios}

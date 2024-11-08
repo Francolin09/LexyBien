@@ -1,20 +1,25 @@
-
- 'use client'
+'use client'
 
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import Header from '../components/Header/Header';
-import { div } from 'framer-motion/client';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const router = useRouter();
+
+  const rutachatbot = () => {
+    router.push('/chatbot');
+  };
   
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(''); 
+  
 
     // Realiza el intento de login
     const result = await signIn('credentials', { 
@@ -23,12 +28,13 @@ const Login = () => {
       redirect: false // Desactiva la redirección automática
     });
 
+  
     // Verifica error
     if (result?.error) {
       setError('Credenciales inválidas. Intenta de nuevo.'); 
     } else {
       // Redirigir manualmente en caso de que funcione okeys
-      window.location.href = '/chatbot';
+      rutachatbot()
     }
   };
 
@@ -63,6 +69,7 @@ const Login = () => {
             />
           </div>
           <button 
+            onClick={rutachatbot}
             type="submit" 
             className="bg-gray-900 p-2 rounded hover:bg-gray-800 transition-all text-white"
           >
