@@ -5,40 +5,55 @@ import * as React from "react"
 import { IUsuario } from '@/models/usuario';
 import Acordion from "../components/Acordion";
 import Image from "next/image";
-import { useSession, signIn } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { HiLogin } from "react-icons/hi";
 import Panelcuentas from "../components/Panelcuentas";
 import { UsuariosOcupados } from "@/models/ocupado";
+import { useRouter } from 'next/navigation';
 
 
 export default function Page() {
 
   const { data: session, status } = useSession();
-
   const [usuarios, setUsers] = useState<IUsuario[]>([])
-
   const [busqueda, setBusqueda] = useState('');
-
   const [busqueda2, setBusqueda2] = useState('');
-
   const [update, setUpdate] = useState(false);
-
   const [rolFiltro, setRolFiltro] = useState('');
-
   const [usuariosOcupados, setUsuariosOcupados] = useState<UsuariosOcupados>({
     abogadoIds: [],
     usuarioIds: []
   });
-
-
-
+  const router = useRouter();
 
   useEffect(() => {
-    getUsers().then(users => setUsers(users)) 
-    getOcupados().then(abogados => setUsuariosOcupados(abogados))
-    console.log(usuariosOcupados)
-  }, [update])
+    const fetchData = async () => {
+    const users = await getUsers();
+    const ocupadosData = await getOcupados();
+    setUsers(users);
+    setUsuariosOcupados(ocupadosData);
+    };
+    fetchData();
+  }, [update]);
 
+  if (status === 'loading') {
+    return <p>Cargando...</p>; 
+  }
+
+  // Si el usuario no está autenticado
+  if (!session || !session.user) {
+    return (
+      <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
+        <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión.</p>
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={() => signIn()} // Inicia sesión al hacer clic
+        >
+          Iniciar sesión
+        </button>
+      </div>
+    );
+  }
 
   const cambiobuscador = (event: React.ChangeEvent<HTMLInputElement>) =>{
     setBusqueda(event.target.value); // esta funcion irá actualizando constantemente al tipear sobre el input
@@ -60,28 +75,14 @@ export default function Page() {
     setRolFiltro(event.target.value);
   };
 
+
+  const cambioadmin = () => {
+    router.push('/admin');
+  };
+
   const usuariosFiltradosPorRol = rolFiltro
     ? usuariofiltrado2.filter(usuario => usuario.rol === rolFiltro)
     : usuariofiltrado2;
-
-  if (status === 'loading') {
-    return <p>Cargando...</p>; 
-  }
-
-  // Si el usuario no está autenticado
-  if (!session || !session.user) {
-    return (
-      <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
-        <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión.</p>
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() => signIn()} // Inicia sesión al hacer clic
-        >
-          Iniciar sesión
-        </button>
-      </div>
-    );
-  }
 
 
   return (
@@ -98,14 +99,16 @@ export default function Page() {
           <div className="flex flex-col">
             <div>
               <span className="text-white">
-                Bienvenido, pauh
+                Bienvenido, {session?.user.nombre}
               </span>
             </div>
             <div className="flex justify-start">
-              <button className=" bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
+              <button 
+                onClick={() => signOut({callbackUrl:'/'})}
+                className=" bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
                 <HiLogin />
               </button>
-              <button onClick={() => (window.location.href = '/admin')}
+              <button onClick={cambioadmin}
                 className=" bg-red-700 mx-3 px-2 text-white font-semibold rounded-lg shadow-md hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75 transition duration-200">
                 Ir a Consultas
               </button>

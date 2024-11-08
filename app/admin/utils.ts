@@ -1,12 +1,12 @@
 export const getUsers = async () => {
-  const response = await fetch('/api/usuarios', {
-    method: 'GET'
-  })
-  if (response.statusText !== 'OK'){
-    console.log(response.statusText)
-  }
-  const json = await response.json();
-  return json;
+const response = await fetch('/api/usuarios', {
+  method: 'GET'
+})
+if (response.statusText !== 'OK'){
+  console.log(response.statusText)
+}
+const json = await response.json();
+return json;
 }
 
 export const getConsultas = async () => {

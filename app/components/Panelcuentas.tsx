@@ -23,12 +23,20 @@ const Panelcuentas = ({usuario, ocupados, setUpdate}:{usuario: IUsuario, ocupado
     const handleGuardarCambios = async () => {
         if (!usuario._id) {
             return;}
+        
+        const usuarioIdOcupado = ocupados.usuarioIds.includes(usuario._id);
+        const abogadoIdOcupado = ocupados.abogadoIds.includes(usuario._id);
+    
+        if (usuarioIdOcupado || abogadoIdOcupado) {
+            alert("No se puede cambiar el rol de este usuario/abogado porque está asociado a una consulta.");
+            setModoEdicion(false);
+            return;
+        }
       
         const usuario1 = {
           _id: usuario._id,
           rol: rolSeleccionado
         };
-        console.log(usuario1)
       
         try {
           const response = await fetch(`/api/usuarios`, {
@@ -133,9 +141,9 @@ const Panelcuentas = ({usuario, ocupados, setUpdate}:{usuario: IUsuario, ocupado
                             onChange={handleRolChange}
                             className="px-2 py-1 border rounded"
                         >
-                            <option key={usuario._id} value="">Seleccione un rol</option>
-                            <option key={usuario._id} value="usuario">Usuario</option>
-                            <option key={usuario._id} value="abogado">Abogado</option>
+                            <option key={1} value="">Seleccione un rol</option>
+                            <option key={2} value="usuario">Usuario</option>
+                            <option key={3} value="abogado">Abogado</option>
                         </select>
                     ) : (
                         <span
