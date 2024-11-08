@@ -181,6 +181,12 @@ const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuario
                     </div>
                   </div>
                 </td>
+                {/* SECCIÓN FECHA CONSULTA */}
+                <td className="px-6 py-4">
+                  <div className="text-sm flex">
+                      <span>{detalle.fecha_creacion}</span>
+                  </div>
+                </td>
 
                 {/*SECCION BOTONES BORRAR-GUARDAR-DETALLES */}
                 <td className="px-6 py-4">

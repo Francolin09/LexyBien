@@ -1,9 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +46,14 @@ const Navbar = () => {
     { name: 'Contacto', id: 'contacto' },
   ];
 
+  const rutainicial = () => {
+    router.push('/');
+};
+
+  const rutalogin = () => {
+    router.push('/login');
+  };
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       isScrolled ? 'bg-slate-900' : 'bg-transparent text-white'
@@ -52,7 +64,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             
               <button 
-                onClick={() => (window.location.href = '/')} 
+                onClick={rutainicial} 
                 className="flex items-center cursor-pointer group"
               >
                 <span className={`font-bold text-xl transition-colors duration-300 ${
@@ -64,32 +76,33 @@ const Navbar = () => {
            
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {navigationItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.id)}
-                className={`px-3 py-2 text-sm font-medium transition-colors duration-300 hover:text-blue-600 ${
-                  isScrolled ? 'text-white' : 'text-white'
-                }`}
-              >
-                {item.name}
-              </button>
-            ))}
-            
-            
-            <button
-              onClick={() => (window.location.href = '/login')}
-              
-              className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
-            >
-              Iniciar Sesión
-            </button>
-            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex md:items-center md:space-x-8">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`px-3 py-2 text-sm font-medium transition-colors duration-300 hover:text-blue-600 ${
+                    isScrolled ? 'text-white' : 'text-white'
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
 
-            
-          </div>
+              {session && (
+                <span className="text-white text-sm font-medium">
+                  Bienvenido, {session.user?.nombre}
+                </span>
+              )}
+
+                <button
+                  onClick={session ? () => signOut({ callbackUrl: '/' }) : rutalogin}
+                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
+                >
+                  {session ? 'Desloguear' : 'Iniciar sesión'}
+                </button>
+            </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
