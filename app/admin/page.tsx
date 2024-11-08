@@ -84,6 +84,10 @@ export default function Page() {
               <button className=" bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
                 <HiLogin />
               </button>
+              <button onClick={() => (window.location.href = '/adminus')}
+                className=" bg-green-700 mx-3 px-2 text-white font-semibold rounded-lg shadow-md hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 transition duration-200">
+                Ir a cuentas
+              </button>
             </div>
           </div>
         </div>

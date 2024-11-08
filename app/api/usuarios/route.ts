@@ -36,3 +36,27 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    await connectMongo();
+
+    const data = await request.json();
+    const { _id } = data; 
+
+    if (!_id) {
+      return NextResponse.json({ error: 'ID es requerida' }, { status: 400 });
+    }
+
+    const deletedUsuario = await Usuario.findByIdAndDelete(_id);
+
+    if (!deletedUsuario) {
+      return NextResponse.json({ error: 'Usuario no encontrado' }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: 'Usuario eliminado exitosamente' });
+  } catch (error) {
+    console.error('Error eliminando usuario:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}

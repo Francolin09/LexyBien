@@ -1,5 +1,4 @@
 'use client';
-import { Link } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const Navbar = () => {

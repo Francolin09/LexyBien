@@ -4,7 +4,6 @@
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import Header from '../components/Header/Header';
-import { div } from 'framer-motion/client';
 
 const Login = () => {
   const [email, setEmail] = useState('');

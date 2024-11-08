@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react";
-import { getUsers } from "@/app/admin/utils";
+import { getOcupados, getUsers } from "@/app/admin/utils";
 import * as React from "react"
 import { IUsuario } from '@/models/usuario';
 import Acordion from "../components/Acordion";
@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useSession, signIn } from 'next-auth/react';
 import { HiLogin } from "react-icons/hi";
 import Panelcuentas from "../components/Panelcuentas";
+import { UsuariosOcupados } from "@/models/ocupado";
 
 
 export default function Page() {
@@ -24,11 +25,18 @@ export default function Page() {
 
   const [rolFiltro, setRolFiltro] = useState('');
 
+  const [usuariosOcupados, setUsuariosOcupados] = useState<UsuariosOcupados>({
+    abogadoIds: [],
+    usuarioIds: []
+  });
+
 
 
 
   useEffect(() => {
-    getUsers().then(users => setUsers(users))  
+    getUsers().then(users => setUsers(users)) 
+    getOcupados().then(abogados => setUsuariosOcupados(abogados))
+    console.log(usuariosOcupados)
   }, [update])
 
 
@@ -94,8 +102,12 @@ export default function Page() {
               </span>
             </div>
             <div className="flex justify-start">
-              <button className=" bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
+              <button className=" bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200">
                 <HiLogin />
+              </button>
+              <button onClick={() => (window.location.href = '/admin')}
+                className=" bg-red-700 mx-3 px-2 text-white font-semibold rounded-lg shadow-md hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75 transition duration-200">
+                Ir a Consultas
               </button>
             </div>
           </div>
@@ -131,6 +143,7 @@ export default function Page() {
                                         <option value="">Todos</option>
                                         <option value="usuario">Usuarios</option>
                                         <option value="abogado">Abogados</option>
+                                        <option value="admin">Admin</option>
                                     </select>
                                     <div
                                         className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -176,7 +189,7 @@ export default function Page() {
                                         </tr>
                                     </thead>
                                     {usuariosFiltradosPorRol.map(usuario => (
-                                        <Panelcuentas key={usuario._id} usuario={usuario} usuarios={usuariosFiltradosPorRol} setUpdate={setUpdate}></Panelcuentas>
+                                        <Panelcuentas key={usuario._id} usuario={usuario} ocupados={usuariosOcupados} setUpdate={setUpdate}></Panelcuentas>
                                     ))}
                                 </table>
                             </div>
