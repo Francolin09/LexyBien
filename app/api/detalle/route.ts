@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import connectMongo from '@/lib/mongoose';
 import Consulta from '@/models/consulta';
 
+export const revalidate = 0;
 
 export async function GET() {
   await connectMongo();
