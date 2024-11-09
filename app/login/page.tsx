@@ -12,7 +12,7 @@ const Login = () => {
   const router = useRouter();
 
   const rutachatbot = () => {
-    router.push('/chatbot');
+    router.push('/');
   };
   
 

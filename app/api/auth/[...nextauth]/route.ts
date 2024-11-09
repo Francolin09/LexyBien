@@ -1,10 +1,8 @@
-
-
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import connectMongo from '@/lib/mongoose';
-import Usuario from '@/models/usuario';
+import Usuario, {IUsuario } from '@/models/usuario';
 
 
 const handler = NextAuth({
@@ -22,17 +20,17 @@ const handler = NextAuth({
           throw new Error('Email y contraseña son requeridos');
         }
 
-        const user = await Usuario.findOne({ email: credentials.email });
-        if (!user) {
+        const logeo = await Usuario.findOne({ email: credentials.email }) as IUsuario;
+        if (!logeo) {
           throw new Error('Usuario no encontrado');
         }
 
-        const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+        const isPasswordValid = await bcrypt.compare(credentials.password, logeo.password);
         if (!isPasswordValid) {
           throw new Error('Credenciales incorrectas');
         }
 
-        return { id: user._id.toString(), nombre: user.nombre, email: user.email }; 
+        return { id: logeo._id.toString(), nombre: logeo.nombre, email: logeo.email, rol: logeo.rol }; 
       },
     }),
   ],
@@ -41,6 +39,7 @@ const handler = NextAuth({
       if (user) {
         token.id = user.id;
         token.nombre = user.nombre;
+        token.rol = user.rol;
       }
       return token;
     },
@@ -48,6 +47,7 @@ const handler = NextAuth({
       if (session.user) {
         session.user.id = token.id as string;
         session.user.nombre = token.nombre as string;
+        session.user.rol = token.rol as string;
       }
       return session;
     },
