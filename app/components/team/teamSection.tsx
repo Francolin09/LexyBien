@@ -7,19 +7,19 @@ const TeamSection: React.FC = () => {
       name: 'Claudio',
       role: 'Especialista en derecho corporativo',
       description: 'Conocido por su atención al detalle y su habilidad para resolver conflictos con precisión.',
-      imageUrl: '/images/miembro1.jpg',
+      imageUrl: '/images/Miembro1.jpg',
     },
     {
       name: 'Margarita',
       role: 'Enfoque en derecho laboral',
       description: 'Defiende los derechos de los empleados con una destreza negociadora sobresaliente.',
-      imageUrl: '/images/miembro2.jpg',
+      imageUrl: '/images/Miembro2.jpg',
     },
     {
       name: 'José',
       role: 'Especialista en Derecho civil',
       description: 'Aporta un enfoque sereno y experiencia para una defensa legal sólida y eficaz.',
-      imageUrl: '/images/miembro3.jpg',
+      imageUrl: '/images/Miembro3.jpg',
     },
   ];
 

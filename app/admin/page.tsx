@@ -38,17 +38,21 @@ export default function Page() {
     return <p>Cargando...</p>; 
   }
 
+  const rutahome = () => {
+    router.push('/');
+  };
+
   // Si el usuario no está autenticado
   if (!session || session.user.rol !== 'admin') {
     return (
       <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
         <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión como ADMINISTRADOR.</p>
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() => signIn()} // Inicia sesión al hacer clic
-        >
-          Iniciar sesión
-        </button>
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+            onClick={() => (session ? rutahome() : signIn())} // Acción según el estado de sesión
+          >
+            {session ? <FaHome /> : 'Iniciar sesión'}
+          </button>
       </div>
     );
   }
@@ -61,9 +65,7 @@ export default function Page() {
       router.push('/adminus');
   };
 
-  const rutahome = () => {
-    router.push('/');
-  };
+  
 
   const usuariofiltrado: IUsuario[] = usuarios.filter(usuario =>
   usuario.nombre.toLowerCase().includes(busqueda.toLowerCase()) 
