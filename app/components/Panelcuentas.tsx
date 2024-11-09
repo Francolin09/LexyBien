@@ -144,6 +144,7 @@ const Panelcuentas = ({usuario, ocupados, setUpdate}:{usuario: IUsuario, ocupado
                             <option key={1} value="">Seleccione un rol</option>
                             <option key={2} value="usuario">Usuario</option>
                             <option key={3} value="abogado">Abogado</option>
+                            <option key={4} value="admin">Admin</option>
                         </select>
                     ) : (
                         <span

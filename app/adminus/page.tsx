@@ -10,6 +10,7 @@ import { HiLogin } from "react-icons/hi";
 import Panelcuentas from "../components/Panelcuentas";
 import { UsuariosOcupados } from "@/models/ocupado";
 import { useRouter } from 'next/navigation';
+import { FaHome } from "react-icons/fa";
 
 
 export default function Page() {
@@ -41,10 +42,10 @@ export default function Page() {
   }
 
   // Si el usuario no está autenticado
-  if (!session || !session.user) {
+  if (!session || session.user.rol !== 'admin') {
     return (
       <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black min-h-screen flex flex-col justify-center items-center p-4">
-        <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión.</p>
+        <p className="text-white mb-4">Acceso denegado. Debes iniciar sesión como ADMINISTRADOR.</p>
         <button
           className="bg-blue-500 text-white px-4 py-2 rounded"
           onClick={() => signIn()} // Inicia sesión al hacer clic
@@ -80,6 +81,10 @@ export default function Page() {
     router.push('/admin');
   };
 
+  const rutahome = () => {
+    router.push('/');
+  };
+
   const usuariosFiltradosPorRol = rolFiltro
     ? usuariofiltrado2.filter(usuario => usuario.rol === rolFiltro)
     : usuariofiltrado2;
@@ -111,6 +116,10 @@ export default function Page() {
               <button onClick={cambioadmin}
                 className=" bg-red-700 mx-3 px-2 text-white font-semibold rounded-lg shadow-md hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75 transition duration-200">
                 Ir a Consultas
+              </button>
+              <button  onClick={rutahome}
+                className=" bg-green-700 mx-3 px-2 text-white font-semibold rounded-lg shadow-md hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 transition duration-200">
+                <FaHome />
               </button>
             </div>
           </div>
