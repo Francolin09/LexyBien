@@ -1,5 +1,6 @@
 import React from 'react';
 import TeamCard from '@/app/components/team/teamCard'; // Asegúrate de que la ruta sea correcta para importar TeamCard
+import Image from 'next/image';
 
 const TeamSection: React.FC = () => {
   const teamMembers = [
@@ -30,7 +31,7 @@ const TeamSection: React.FC = () => {
     >
       {/* Imagen de fondo con opacidad */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/images/fondoTeam.jpg"
           alt="Background"
           className="w-full h-full object-cover " // Ajusta la opacidad aquí
