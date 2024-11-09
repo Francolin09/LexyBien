@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 interface TeamCardProps {
@@ -13,7 +14,7 @@ const TeamCard: React.FC<TeamCardProps> = ({ name, role, description, imageUrl }
       {/* Contenedor de imagen circular con efecto hover */}
       <div className="relative w-32 h-32 mx-auto mb-6 group">
         <div className="absolute inset-0 rounded-full bg-blue-500/10 animate-pulse" />
-        <img
+        <Image
           src={imageUrl}
           alt={`${name} - ${role}`}
           className="w-full h-full rounded-full object-cover object-top border-4 border-white shadow-lg transition-transform duration-500 group-hover:scale-105"
