@@ -21,6 +21,8 @@ const TeamCard: React.FC<TeamCardProps> = ({ name, role, description, imageUrl }
           style={{
             objectPosition: name.toLowerCase() === 'sebastian' ? 'center 15%' : 'center 20%'
           }}
+          width={100}
+          height={100}
         />
       </div>
       
