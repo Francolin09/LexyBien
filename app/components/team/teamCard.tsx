@@ -23,10 +23,12 @@ const TeamCard: React.FC<TeamCardProps> = ({ name, role, description, imageUrl }
             objectPosition: name.toLowerCase() === 'sebastian' ? 'center 15%' : 'center 20%'
             
           }}
+          width={100}
+          height={100}
         />
       </div>
       
-      {/* Contenido de la tarjeta */}
+      {/* Contenido de la tarjeta 123 */}
       <h3 className="text-xl font-semibold text-gray-800 mb-2">{name}</h3>
       <p className="text-blue-600 font-medium text-sm mb-4">{role}</p>
       <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
