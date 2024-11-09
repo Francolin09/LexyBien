@@ -1,9 +1,11 @@
-DELETE http://localhost:3000/api/usuarios
+put http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
-  "_id": "672a6964fe6945f169b54ba4",
-  "nombre": "Alicia cambio",
-  "email": "correo cambio",
-  "rol": "asignado"
+  "_id": 
+  "mensaje": "Me quieren demandar por pensión de alimentos"
+  "usuarioId": "6719813cf7916b8c12deaa41"
+  "abogadoId": ""
+  "estado": "no asignado"
+  "fecha_creacion": "25-10-2024"
 }

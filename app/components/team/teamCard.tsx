@@ -17,9 +17,11 @@ const TeamCard: React.FC<TeamCardProps> = ({ name, role, description, imageUrl }
         <Image
           src={imageUrl}
           alt={`${name} - ${role}`}
+          width={100} height={100}   
           className="w-full h-full rounded-full object-cover object-top border-4 border-white shadow-lg transition-transform duration-500 group-hover:scale-105"
           style={{
             objectPosition: name.toLowerCase() === 'sebastian' ? 'center 15%' : 'center 20%'
+            
           }}
         />
       </div>
