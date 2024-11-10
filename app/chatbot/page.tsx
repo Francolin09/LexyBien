@@ -69,7 +69,7 @@ const ChatbotPage = () => {
 
       const data = await response.json();
       setMessages([...messages, userMessage, { role: 'assistant', content: data.answer }]);
-      if (data.answer.includes("Si deseas crear una consulta puedes hacerlo dando click en el boton 'CREAR CONSULTA' abajo del chat")) {
+      if (data.answer.includes("Si deseas crear una consulta")) {
         setmostrarBotonConsulta(true);
       }
     } catch (error) {
