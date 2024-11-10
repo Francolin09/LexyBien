@@ -21,10 +21,10 @@ const HomePage = () => {
         {/* <div className="w-16 h-16 bg-yellow-500 rounded-full mb-4"></div> */}
 
         {/* Texto principal */}
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white" style={{ textShadow: '2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000' }}>
           Confía en la justicia: soluciones legales con innovación.
         </h1>
-        <p className="text-lg md:text-xl mb-8">
+        <p className="text-lg md:text-xl mb-8 text-white" style={{ textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>
           Nuestro equipo de expertos y un avanzado chatbot están aquí para ayudarte en cada paso.
         </p>
 
