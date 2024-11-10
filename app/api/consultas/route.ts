@@ -14,6 +14,36 @@ export async function GET() {
   }
 }
 
+export async function POST(request: Request) {
+  try {
+    await connectMongo();
+
+    const data = await request.json();
+
+    const { mensaje, usuarioId, estado, fecha_creacion } = data;
+    if (!mensaje || !usuarioId || estado === undefined || !fecha_creacion) {
+      return NextResponse.json({ error: 'Todos los campos requeridos deben estar presentes' }, { status: 400 });
+    }
+
+    const nuevaConsulta = new Consulta({
+      mensaje,
+      usuarioId,
+      abogadoId: "no",
+      estado: "no asignado",
+      fecha_creacion,
+      
+    });
+
+    const savedConsulta = await nuevaConsulta.save();
+
+
+    return NextResponse.json(savedConsulta, { status: 201 });
+  } catch (error) {
+    console.error('Error creating consulta:', error);
+    return NextResponse.json({ error: 'Error interno en el servidor' }, { status: 500 });
+  }
+}
+
 export async function PUT(request: Request) {
   try {
     await connectMongo();

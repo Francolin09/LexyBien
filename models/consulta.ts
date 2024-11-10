@@ -12,7 +12,7 @@ interface IConsulta {
 const consultaSchema = new Schema({                           
   mensaje: { type: String, required: true },
   usuarioId: { type: String, required: true },
-  abogadoId: { type: String, required: true },
+  abogadoId: { type: String, default:"", required: false},
   estado: { type: String },
   fecha_creacion: { type: String, required: true}
 });
