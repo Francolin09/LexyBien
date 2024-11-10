@@ -71,6 +71,7 @@ const ChatbotPage = () => {
       setMessages([...messages, userMessage, { role: 'assistant', content: data.answer }]);
       if (data.answer.includes("Si deseas crear una consulta")) {
         setmostrarBotonConsulta(true);
+        console.log(mostrarBotonConsulta)
       }
     } catch (error) {
       console.error('Error fetching the bot response:', error);
