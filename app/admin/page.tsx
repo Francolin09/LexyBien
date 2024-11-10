@@ -11,6 +11,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { HiLogin } from "react-icons/hi";
 import { useRouter } from 'next/navigation';
 import { FaHome } from "react-icons/fa";
+import Footer from "../components/Footer/footer";
 
 
 export default function Page() {
@@ -138,6 +139,7 @@ export default function Page() {
         </div>
       </div>
     </main>
+    <Footer/>
   </>
   )
 }
