@@ -11,6 +11,7 @@ import Panelcuentas from "../components/Panelcuentas";
 import { UsuariosOcupados } from "@/models/ocupado";
 import { useRouter } from 'next/navigation';
 import { FaHome } from "react-icons/fa";
+import Footer from "../components/Footer/footer";
 
 
 export default function Page() {
@@ -99,7 +100,8 @@ export default function Page() {
             <Image className="h-full w-full rounded-full object-cover object-center"
               src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt=""
-              width={100} height={100}                                 
+              width={100} 
+              height={100}                                 
             />
           </div>
           <div className="flex flex-col">
@@ -212,6 +214,7 @@ export default function Page() {
             {/*------------------------------------------------------------------------------------------------------------- */}
         </div>
     </main>
+    <Footer/>
   </>
   )
 }
