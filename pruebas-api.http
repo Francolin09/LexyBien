@@ -1,11 +1,11 @@
-put http://localhost:3000/api/usuarios
+POST http://localhost:3000/api/consultas
 Content-Type: application/json
 
 {
-  "_id": 
-  "mensaje": "Me quieren demandar por pensión de alimentos"
-  "usuarioId": "6719813cf7916b8c12deaa41"
-  "abogadoId": ""
-  "estado": "no asignado"
+  //"_id": "672fe4a06de353b26349e1b4",
+  "mensaje": "noséquepasa",
+  "usuarioId": "6719813cf7916b8c12deaa41",
+  "abogadoId": "a",
+  "estado": "no asignado",
   "fecha_creacion": "25-10-2024"
 }

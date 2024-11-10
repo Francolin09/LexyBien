@@ -13,14 +13,14 @@ export async function GET() {
         usuarioObjectId: { $toObjectId: '$usuarioId' },
         abogadoObjectId: {
           $cond: {
-            if: { $eq: ['$abogadoId', ''] },
+            if: { $eq: ['$abogadoId', 'no'] },
             then: null,
             else: { $toObjectId: '$abogadoId' }
           }
         }
       }
     },
-    {
+    { 
       $lookup: {
         from: 'usuarios',
         localField: 'usuarioObjectId',

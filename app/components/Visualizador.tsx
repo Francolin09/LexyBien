@@ -37,7 +37,7 @@ const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuario
   const handleEliminarConsulta = async () => {
     if (!detalle._id) return;
 
-    const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este usuario?");
+    const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar esta consulta?");
         if (!isConfirmed) {
           return;}
   
@@ -81,7 +81,7 @@ const Visualizador = ({detalle, usuarios, setUpdate}:{detalle: IDetalle, usuario
       _id: detalle._id,
       mensaje: detalle.mensaje,
       usuarioId: detalle.usuario._id,
-      abogadoId: abogadoSeleccionado ? abogadoSeleccionado._id : "",
+      abogadoId: abogadoSeleccionado ? abogadoSeleccionado._id : "no",
       estado: abogadoSeleccionado ? "asignado" : "no asignado",    
       fecha_creacion: detalle.fecha_creacion,
     };

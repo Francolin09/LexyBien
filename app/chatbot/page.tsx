@@ -1,10 +1,11 @@
 'use client';
 
-import { useSession, signIn } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useState, FormEvent } from 'react';
 import Header from '../components/Header/Header';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -17,12 +18,17 @@ const ChatbotPage = () => {
   const { data: session, status } = useSession();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
+  const [mostrarBotonConsulta, setmostrarBotonConsulta] = useState(false);
+  const router = useRouter();
 
   if (status === 'loading') {
     return <p>Cargando...</p>;
   }
 
-  if (!session || !session.user) {
+  const rutahome = () => {
+    router.push('/');
+  };
+  if (!session || session.user.rol !== 'usuario') {
     return (
       <div>
         <Header />
@@ -34,18 +40,19 @@ const ChatbotPage = () => {
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
           <div className="relative z-10">
-            <p className="text-white mb-4">Acceso denegado. <br />Debes iniciar sesión antes de usar nuestro chatbot.</p>
+            <p className="text-white mb-4">Acceso denegado. <br />Debes iniciar sesión como USUARIO antes de usar nuestro chatbot.</p>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-              onClick={() => signIn()}
+              onClick={rutahome}
             >
-              Iniciar sesión
+              Volver
             </button>
           </div>
         </div>
       </div>
     );
   }
+
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,8 +69,46 @@ const ChatbotPage = () => {
 
       const data = await response.json();
       setMessages([...messages, userMessage, { role: 'assistant', content: data.answer }]);
+      if (data.answer.includes("Si deseas crear una consulta puedes hacerlo dando click en el boton 'CREAR CONSULTA' abajo del chat")) {
+        setmostrarBotonConsulta(true);
+      }
     } catch (error) {
       console.error('Error fetching the bot response:', error);
+    }
+  };
+
+  const creacionconsulta = async () => {
+    const today = new Date();
+    const formattedDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+  
+    const mensaje = messages
+      .map((msg) => `${msg.role}: ${msg.content}`)
+      .join('\n');
+  
+    const consulta = {
+      mensaje,
+      usuarioId: session?.user?.id,
+      abogadoId: "no",
+      estado: "no asignado",
+      fecha_creacion: formattedDate,
+    };
+  
+    try {
+      const response = await fetch('/api/consultas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(consulta),
+      });
+  
+      if (response.ok) {
+        setmostrarBotonConsulta(false);
+        alert('Consulta creada exitosamente.');
+        rutahome()
+      } else {
+        throw new Error('Error en la creación de la consulta');
+      }
+    } catch (error) {
+      console.error('Error creating consulta:', error);
     }
   };
 
@@ -116,6 +161,14 @@ const ChatbotPage = () => {
                 Enviar
               </button>
             </form>
+            {mostrarBotonConsulta && (
+              <button 
+                onClick={creacionconsulta} 
+                className="w-full px-4 py-2 mt-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                Crear consulta
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -64,6 +64,10 @@ const Navbar = () => {
     router.push('/adminus');
   };
 
+  const rutaregister = () => {
+    router.push('/register')
+  }
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       isScrolled ? 'bg-slate-900' : 'bg-transparent text-white'
@@ -133,6 +137,16 @@ const Navbar = () => {
                     onClick={rutaadminus}
                   >
                     {session.user?.rol === 'admin' ? 'usuarios' : <GiPadlock />}
+                  </button>
+                </>
+              )}
+              {!session && (
+                <>
+                <button
+                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white"
+                    onClick={rutaregister}
+                  >
+                    Registrar
                   </button>
                 </>
               )}
