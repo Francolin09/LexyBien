@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bymlegal.cl/sitemap.xml
+Sitemap: https://www.bymlegal.cl/sitemap.xml
