@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LexyBien - Asesorías Legales Profesionales
 
-## Getting Started
+Sitio web informativo para servicios de asesoría legal en Chile. Desarrollado con Next.js 15 y optimizado para Vercel.
 
-First, run the development server:
+## Características
 
+- 🏛️ **Página informativa** sobre servicios legales
+- 📝 **Formulario de contacto** con validación
+- 📱 **Diseño responsive** con Tailwind CSS
+- ⚡ **Optimizado para Vercel** con configuraciones de seguridad
+- 🔒 **Headers de seguridad** configurados
+
+## Tecnologías
+
+- **Frontend**: Next.js 15, React 18, TypeScript
+- **Estilos**: Tailwind CSS
+- **Animaciones**: Framer Motion
+- **Iconos**: Lucide React, React Icons
+- **Despliegue**: Vercel
+
+## Desarrollo Local
+
+1. Instala las dependencias:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Ejecuta el servidor de desarrollo:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Despliegue en Vercel
 
-## Learn More
+### Opción 1: Despliegue automático desde GitHub
 
-To learn more about Next.js, take a look at the following resources:
+1. Conecta tu repositorio de GitHub con Vercel
+2. Vercel detectará automáticamente que es un proyecto Next.js
+3. El despliegue se realizará automáticamente
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Opción 2: Despliegue manual
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Instala Vercel CLI:
+```bash
+npm i -g vercel
+```
 
-## Deploy on Vercel
+2. Despliega el proyecto:
+```bash
+vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Sigue las instrucciones en la terminal
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Configuración de Dominio Personalizado
+
+1. En el dashboard de Vercel, ve a tu proyecto
+2. Ve a "Settings" > "Domains"
+3. Agrega tu dominio personalizado
+4. Configura los registros DNS según las instrucciones de Vercel
+
+## Configuración de Seguridad
+
+El proyecto incluye headers de seguridad configurados en `vercel.json`:
+
+- X-Frame-Options: DENY
+- X-Content-Type-Options: nosniff
+- X-XSS-Protection: 1; mode=block
+- Strict-Transport-Security: max-age=31536000
+- Referrer-Policy: origin-when-cross-origin
+
+## Estructura del Proyecto
+
+```
+├── app/
+│   ├── api/contact/          # API del formulario de contacto
+│   ├── components/           # Componentes React
+│   ├── globals.css          # Estilos globales
+│   ├── layout.tsx           # Layout principal
+│   └── page.tsx             # Página principal
+├── public/images/           # Imágenes del sitio
+├── vercel.json             # Configuración de Vercel
+└── package.json            # Dependencias del proyecto
+```
+
+## Formulario de Contacto
+
+El formulario incluye validación para:
+- Nombre completo (requerido)
+- RUT chileno (formato: 12345678-9)
+- Email válido
+- Mensaje (requerido)
+
+Los mensajes se envían automáticamente por email a `asesorias.bymlegal@gmail.com` usando Resend.
+
+### Configuración de Email
+
+1. **Crear cuenta en Resend:**
+   - Ve a [resend.com](https://resend.com)
+   - Crea una cuenta gratuita
+   - Obtén tu API key
+
+2. **Configurar variables de entorno:**
+   ```bash
+   # Crear archivo .env.local
+   RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   ```
+
+3. **Verificar dominio (opcional):**
+   - Para usar `noreply@lexybien.com` necesitas verificar tu dominio
+   - O puedes usar el dominio de prueba de Resend
+
+## Personalización
+
+Para personalizar el sitio:
+
+1. **Contenido**: Edita los componentes en `app/components/`
+2. **Estilos**: Modifica `app/globals.css` o usa clases de Tailwind
+3. **Metadatos**: Actualiza `app/layout.tsx` y `app/page.tsx`
+4. **Imágenes**: Reemplaza las imágenes en `public/images/`
+
+## Soporte
+
+Para soporte técnico o consultas sobre el proyecto, contacta al equipo de desarrollo.

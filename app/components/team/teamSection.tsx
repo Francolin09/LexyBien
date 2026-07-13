@@ -1,25 +1,33 @@
 import React from 'react';
-import TeamCard from '@/app/components/team/teamCard'; // Asegúrate de que la ruta sea correcta para importar TeamCard
+import SpecialtyCard from '@/app/components/team/specialtyCard';
 import Image from "next/image";
+import { Scale, Home, Users, Shield } from 'lucide-react';
+
 const TeamSection: React.FC = () => {
-  const teamMembers = [
+  const specialties = [
     {
-      name: 'Claudio',
-      role: 'Especialista en derecho corporativo',
-      description: 'Conocido por su atención al detalle y su habilidad para resolver conflictos con precisión.',
-      imageUrl: '/images/Miembro1.jpg',
+      name: 'Derecho Penal',
+      description: 'Defensa especializada en delitos y faltas, garantizando el debido proceso y la protección de tus derechos fundamentales.',
+      icon: <Shield size={40} />,
+      color: 'bg-red-500',
     },
     {
-      name: 'Margarita',
-      role: 'Enfoque en derecho laboral',
-      description: 'Defiende los derechos de los empleados con una destreza negociadora sobresaliente.',
-      imageUrl: '/images/Miembro2.jpg',
+      name: 'Derecho Civil',
+      description: 'Asesoría en contratos, responsabilidad civil, sucesiones y todo lo relacionado con las relaciones entre particulares.',
+      icon: <Scale size={40} />,
+      color: 'bg-blue-500',
     },
     {
-      name: 'José',
-      role: 'Especialista en Derecho civil',
-      description: 'Aporta un enfoque sereno y experiencia para una defensa legal sólida y eficaz.',
-      imageUrl: '/images/Miembro3.jpg',
+      name: 'Derecho Inmobiliario',
+      description: 'Especialistas en compraventa, arriendos, regularización de títulos y toda la normativa relacionada con bienes raíces.',
+      icon: <Home size={40} />,
+      color: 'bg-green-500',
+    },
+    {
+      name: 'Derecho de Familia',
+      description: 'Protección de los derechos familiares, divorcios, pensión alimenticia, cuidado personal y adopciones.',
+      icon: <Users size={40} />,
+      color: 'bg-purple-500',
     },
   ];
 
@@ -39,19 +47,20 @@ const TeamSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" /> {/* Capa adicional de opacidad */}
       </div>
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-          Algunos de nuestros especialistas
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center mb-20">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 text-white leading-tight">
+          Nuestras Especialidades Legales
         </h2>
-        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-          Expertos comprometidos con la excelencia legal
+        <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
+          Áreas de expertise donde brindamos asesoría especializada y profesional
         </p>
+        <div className="w-32 h-1 bg-blue-400 mx-auto rounded-full"></div>
       </div>
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-        {teamMembers.map((member, index) => (
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        {specialties.map((specialty, index) => (
           <div key={index}>
-            <TeamCard {...member} />
+            <SpecialtyCard {...specialty} />
           </div>
         ))}
       </div>

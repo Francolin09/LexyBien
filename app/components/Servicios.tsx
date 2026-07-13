@@ -19,71 +19,82 @@ const Servicios = () => {
 
       {/* Contenido principal */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-4">
+        <div className="text-center mb-20">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 leading-tight">
             Nuestros Servicios Legales
           </h1>
-          <div className="w-24 h-1 bg-blue-500 mx-auto"></div>
+          <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
+            Ofrecemos una amplia gama de servicios legales profesionales para satisfacer todas tus necesidades jurídicas
+          </p>
+          <div className="w-32 h-1 bg-blue-400 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Servicio 1: Consulta Legal Rápida */}
-          <div className="bg-white/95 backdrop-blur-sm shadow-xl rounded-xl p-8 transform hover:scale-105 transition-all duration-300">
-            <div className="flex justify-center mb-6">
-              <MessageSquare size={48} className="text-blue-600" />
+          <div className="bg-white/95 backdrop-blur-sm shadow-2xl rounded-2xl p-10 transform hover:scale-105 transition-all duration-500 hover:shadow-3xl flex flex-col">
+            <div className="flex justify-center mb-8">
+              <div className="p-4 bg-blue-100 rounded-2xl">
+                <MessageSquare size={56} className="text-blue-600" />
+              </div>
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
               Consulta Legal Rápida
             </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Realiza una consulta legal a Lexy, nuestro chatbot altamente capacitado para resolver todo tipo de dudas, siempre estará disponible para resolver tus dudas al momento de que las tengas.
-              <br />
-              <span className="text-blue-600 font-medium">¡No dudes en usarlo!</span>
+            <p className="text-gray-600 text-center mb-8 leading-relaxed flex-grow">
+            Obtén respuestas inmediatas a tus dudas legales más urgentes. Nuestro equipo entrega orientación clara y precisa para que avances con seguridad sin perder tiempo.
             </p>
-            <div className="flex justify-center">
-            <Link href="/chatbot">
-            <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
-              Consulta Rapida
-            </button>
-            </Link>
+            <div className="flex justify-center mt-auto">
+              <a href="#Contacto">
+                <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl">
+                  Consulta Rápida
+                </button>
+              </a>
             </div>
           </div>
 
-          {/* Servicio 2: Seguimiento de Casos */}
-          <div className="bg-white/95 backdrop-blur-sm shadow-xl rounded-xl p-8 transform hover:scale-105 transition-all duration-300">
-            <div className="flex justify-center mb-6">
-              <FileSearch size={48} className="text-blue-600" />
+          {/* Servicio 2: Atención 24hrs */}
+          <div className="bg-white/95 backdrop-blur-sm shadow-2xl rounded-2xl p-10 transform hover:scale-105 transition-all duration-500 hover:shadow-3xl flex flex-col">
+            <div className="flex justify-center mb-8">
+              <div className="p-4 bg-green-100 rounded-2xl">
+                <FileSearch size={56} className="text-green-600" />
+              </div>
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
-              Seguimiento de Causas
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+              Atención 24hrs
             </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Mantente informado sobre el estado de tus casos en todo momento. Proporcionamos actualizaciones detalladas y oportunas para que siempre estés al tanto de tu situación legal.
+            <p className="text-gray-600 text-center mb-8 leading-relaxed flex-grow">
+            Estamos disponibles día y noche para ti. Con nuestra atención 24/7, siempre contarás con apoyo legal oportuno, sin importar la hora ni el lugar.
             </p>
-            <div className="flex justify-center">
-              <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
-                Verificar estado
-              </button>
+            <div className="flex justify-center mt-auto">
+              <a href="#Contacto">
+                <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-8 rounded-xl transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl">
+                  Contactar Ahora
+                </button>
+              </a>
             </div>
           </div>
 
           {/* Servicio 3: Asesoramiento Personalizado */}
-          <div className="bg-white/95 backdrop-blur-sm shadow-xl rounded-xl p-8 transform hover:scale-105 transition-all duration-300">
-            <div className="flex justify-center mb-6">
-              <Users size={48} className="text-blue-600" />
+          <div className="bg-white/95 backdrop-blur-sm shadow-2xl rounded-2xl p-10 transform hover:scale-105 transition-all duration-500 hover:shadow-3xl flex flex-col">
+            <div className="flex justify-center mb-8">
+              <div className="p-4 bg-purple-100 rounded-2xl">
+                <Users size={56} className="text-purple-600" />
+              </div>
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
               Asesoramiento Personalizado
             </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Recibe asesoramiento personalizado por uno de nuestros especialistas, no importa el problema siempre estaremos para ayudarte.
+            <p className="text-gray-600 text-center mb-8 leading-relaxed flex-grow">
+            Recibe un servicio cercano y adaptado a tu caso. Nuestros profesionales analizan tu situación en detalle para brindarte soluciones legales hechas a tu medida.
               <br />
-              <span className="text-blue-600 font-medium">¡No dudes en ponerte en contacto con nosotros!</span>
+              <span className="text-purple-600 font-semibold">¡No dudes en ponerte en contacto con nosotros!</span>
             </p>
-            <div className="flex justify-center">
-              <button className="bg-slate-900 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transform hover:-translate-y-1 transition-all duration-200 shadow-lg">
-                <a href="#Contacto">Solicitar Asesoría</a>
-              </button>
+            <div className="flex justify-center mt-auto">
+              <a href="#Contacto">
+                <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-8 rounded-xl transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl">
+                  Solicitar Asesoría
+                </button>
+              </a>
             </div>
           </div>
         </div>
