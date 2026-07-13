@@ -15,26 +15,30 @@ const HomePage = () => {
         />
       </div>
 
+      {/* Overlay para mejor legibilidad */}
+      <div className="absolute inset-0 bg-black/40"></div>
+
       {/* Contenido superpuesto */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center text-white px-6">
-        {/* Logo */}
-        {/* <div className="w-16 h-16 bg-yellow-500 rounded-full mb-4"></div> */}
+      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center text-white px-4 sm:px-6 lg:px-8">
+        {/* Contenedor principal con max-width */}
+        <div className="max-w-4xl mx-auto">
+          {/* Texto principal */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 leading-tight">
+            Confía en la justicia:<br />
+            <span className="text-blue-300">soluciones legales</span> con innovación
+          </h1>
+          
+          <p className="text-lg md:text-xl lg:text-2xl mb-10 text-gray-100 max-w-3xl mx-auto leading-relaxed">
+            Nuestro equipo de expertos legales está aquí para brindarte asesoría profesional y confiable.
+          </p>
 
-        {/* Texto principal */}
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white" style={{ textShadow: '2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000' }}>
-          Confía en la justicia: soluciones legales con innovación.
-        </h1>
-        <p className="text-lg md:text-xl mb-8 text-white" style={{ textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>
-          Nuestro equipo de expertos y un avanzado chatbot están aquí para ayudarte en cada paso.
-        </p>
-
-        {/* Botón del Chatbot */}
-        <Link href="/chatbot">
-        <button className="bg-black text-white py-3 px-6 rounded-full shadow-lg hover:bg-gray-800 transition">
-          ➤ ChatBot
-        </button>
-        </Link>
-
+          {/* Botón de Contacto */}
+          <a href="#Contacto" className="inline-block">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+              Contáctanos
+            </button>
+          </a>
+        </div>
       </div>
 
       {/* Barra de navegación */}
