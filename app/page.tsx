@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Contact from './components/Contact';
 import HomePage from './components/Hero';
 import Servicios from './components/Servicios';
 import TeamSection from './components/team/teamSection';

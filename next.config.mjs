@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configuración para producción
-  output: 'standalone',
-  
   // Optimizaciones de imágenes
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -43,11 +40,6 @@ const nextConfig = {
 
   // Configuración de compresión
   compress: true,
-
-  // Configuración de experimental features
-  experimental: {
-    optimizeCss: true,
-  }
 };
 
 export default nextConfig;
