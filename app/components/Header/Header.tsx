@@ -60,7 +60,7 @@ const Navbar = () => {
               <div className="relative w-20 h-20">
                 <Image
                   src="/images/logo.jpg"
-                  alt="LexyBien Logo"
+                  alt="bymlegal Logo"
                   fill
                   className="object-contain transition-all duration-300 group-hover:scale-110"
                 />
