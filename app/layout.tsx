@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://bymlegal.cl'), // Cambia por tu dominio
+  metadataBase: new URL('https://www.bymlegal.cl'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    url: 'https://bymlegal.cl', // Cambia por tu dominio
+    url: 'https://www.bymlegal.cl',
     title: 'bymlegal - Asesorías Legales Profesionales',
     description: 'Asesorías legales profesionales en Chile. Consultas jurídicas y soluciones legales personalizadas con nuestro equipo de expertos.',
     siteName: 'bymlegal',
@@ -72,11 +72,6 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  verification: {
-    google: 'tu-codigo-verificacion-google', // Agrega tu código de verificación
-    yandex: 'tu-codigo-verificacion-yandex', // Opcional
-    yahoo: 'tu-codigo-verificacion-yahoo', // Opcional
   },
 };
 
