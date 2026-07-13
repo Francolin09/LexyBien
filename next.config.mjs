@@ -43,11 +43,6 @@ const nextConfig = {
 
   // Configuración de compresión
   compress: true,
-
-  // Configuración de experimental features
-  experimental: {
-    optimizeCss: true,
-  }
 };
 
 export default nextConfig;

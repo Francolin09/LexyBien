@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import { MessageSquare, FileSearch, Users } from 'lucide-react';
-import Link from 'next/link';
 
 const Servicios = () => {
   return (

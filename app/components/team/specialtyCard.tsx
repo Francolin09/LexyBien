@@ -1,5 +1,4 @@
 import React from 'react';
-import { Scale, Home, Users, Shield } from 'lucide-react';
 
 interface SpecialtyCardProps {
   name: string;
