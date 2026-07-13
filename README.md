@@ -1,4 +1,4 @@
-# LexyBien - Asesorías Legales Profesionales
+# bymlegal - Asesorías Legales Profesionales
 
 Sitio web informativo para servicios de asesoría legal en Chile. Desarrollado con Next.js 15 y optimizado para Vercel.
 
@@ -109,7 +109,7 @@ Los mensajes se envían automáticamente por email a `asesorias.bymlegal@gmail.c
    ```
 
 3. **Verificar dominio (opcional):**
-   - Para usar `noreply@lexybien.com` necesitas verificar tu dominio
+   - Para usar `noreply@bymlegal.com` necesitas verificar tu dominio
    - O puedes usar el dominio de prueba de Resend
 
 ## Personalización

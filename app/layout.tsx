@@ -23,42 +23,42 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "LexyBien - Asesorías Legales Profesionales",
-    template: "%s | LexyBien"
+    default: "ByM - Asesorías Legales Profesionales",
+    template: "%s | bymlegal"
   },
   description: "Asesorías legales profesionales en Chile. Consultas jurídicas, asesoramiento legal y soluciones legales personalizadas con nuestro equipo de expertos.",
-  keywords: ["asesoría legal", "abogado", "consulta jurídica", "derecho", "legal", "LexyBien", "Chile"],
-  authors: [{ name: "LexyBien Team" }],
-  creator: "LexyBien",
-  publisher: "LexyBien",
+  keywords: ["asesoría legal", "abogado", "consulta jurídica", "derecho", "legal", "ByM", "Chile", "demanda", "juicios"],
+  authors: [{ name: "ByM Team" }],
+  creator: "bymlegal",
+  publisher: "bymlegal",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://lexybien.com'), // Cambia por tu dominio
+  metadataBase: new URL('https://bymlegal.cl'), // Cambia por tu dominio
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    url: 'https://lexybien.com', // Cambia por tu dominio
-    title: 'LexyBien - Asesorías Legales Profesionales',
+    url: 'https://bymlegal.cl', // Cambia por tu dominio
+    title: 'bymlegal - Asesorías Legales Profesionales',
     description: 'Asesorías legales profesionales en Chile. Consultas jurídicas y soluciones legales personalizadas con nuestro equipo de expertos.',
-    siteName: 'LexyBien',
+    siteName: 'bymlegal',
     images: [
       {
         url: '/images/og-image.jpg', // Crea esta imagen
         width: 1200,
         height: 630,
-        alt: 'LexyBien - Asesorías Legales',
+        alt: 'bymlegal - Asesorías Legales',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LexyBien - Asesorías Legales Profesionales',
+    title: 'bymlegal - Asesorías Legales Profesionales',
     description: 'Asesorías legales profesionales en Chile con nuestro equipo de expertos.',
     images: ['/images/og-image.jpg'], // Misma imagen que Open Graph
   },

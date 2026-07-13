@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lexybien.com/sitemap.xml
+Sitemap: https://bymlegal.cl/sitemap.xml

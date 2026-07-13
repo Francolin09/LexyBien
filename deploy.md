@@ -1,6 +1,6 @@
 # Guía de Despliegue en Vercel
 
-## Pasos para Desplegar LexyBien
+## Pasos para Desplegar bymlegal
 
 ### 1. Preparación del Proyecto
 
@@ -66,7 +66,7 @@ npm test
    - Click en "Domains"
 
 2. **Agregar dominio:**
-   - Ingresa tu dominio: `lexybien.com`
+   - Ingresa tu dominio: `bymlegal.com`
    - Click en "Add"
 
 3. **Configurar DNS:**
@@ -96,7 +96,7 @@ npm test
    - Agrega las variables necesarias:
      ```
      RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-     NEXT_PUBLIC_APP_URL=https://lexybien.com
+     NEXT_PUBLIC_APP_URL=https://bymlegal.com
      ```
 
 3. **Para desarrollo local:**
@@ -116,7 +116,7 @@ npm test
 
 3. **Verifica SEO:**
    - Usa [Google Search Console](https://search.google.com/search-console)
-   - Verifica que el sitemap esté accesible: `https://lexybien.com/sitemap.xml`
+   - Verifica que el sitemap esté accesible: `https://bymlegal.com/sitemap.xml`
 
 ### 6. Configuración Adicional
 

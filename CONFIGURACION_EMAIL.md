@@ -1,4 +1,4 @@
-# 📧 Configuración de Email - LexyBien
+# 📧 Configuración de Email - bymlegal
 
 ## 🚨 Error del Formulario de Contacto
 
@@ -15,7 +15,7 @@ Si estás viendo errores al enviar el formulario, es porque falta configurar la 
 ### 2. Obtener API Key
 1. Una vez logueado, ve a "API Keys"
 2. Haz clic en "Create API Key"
-3. Dale un nombre (ej: "LexyBien Production")
+3. Dale un nombre (ej: "bymlegal Production")
 4. Copia la API key (empieza con `re_`)
 
 ### 3. Configurar Variables de Entorno

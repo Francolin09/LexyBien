@@ -7,20 +7,20 @@ import Header from './components/Header/Header';
 import ContactForm from './components/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'LexyBien - Asesorías Legales Profesionales',
+  title: 'bymlegal - Asesorías Legales Profesionales',
   description: 'Asesorías legales profesionales en Chile. Consultas jurídicas, asesoramiento legal y soluciones legales personalizadas con nuestro equipo de expertos.',
-  keywords: ['asesoría legal', 'abogado', 'consulta jurídica', 'derecho', 'legal', 'LexyBien', 'Chile'],
+  keywords: ['asesoría legal', 'abogado', 'consulta jurídica', 'derecho', 'legal', 'bymlegal', 'Chile'],
   openGraph: {
-    title: 'LexyBien - Asesorías Legales Profesionales',
+    title: 'bymlegal - Asesorías Legales Profesionales',
     description: 'Asesorías legales profesionales en Chile. Consultas jurídicas y soluciones legales personalizadas con nuestro equipo de expertos.',
-    url: 'https://lexybien.com',
-    siteName: 'LexyBien',
+    url: 'https://bymlegal.cl',
+    siteName: 'bymlegal',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'LexyBien - Asesorías Legales',
+        alt: 'bymlegal - Asesorías Legales',
       },
     ],
     locale: 'es_ES',
@@ -28,12 +28,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LexyBien - Asesorías Legales Profesionales',
+    title: 'bymlegal - Asesorías Legales Profesionales',
     description: 'Asesorías legales profesionales en Chile con nuestro equipo de expertos.',
     images: ['/images/og-image.jpg'],
   },
   alternates: {
-    canonical: 'https://lexybien.com',
+    canonical: 'https://bymlegal.cl',
   },
 };
 
